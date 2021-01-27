@@ -1,0 +1,33 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class PlayerController : MonoBehaviour
+{
+    public InputAction controlMap;
+    public float speed;
+    public float interactRange;
+
+    private CharacterController controller;
+
+    void OnEnable() {
+        controlMap.Enable();
+    }
+
+    void OnDisable() {
+        controlMap.Disable();
+    }
+
+    private void Awake() {
+        controller = GetComponent<CharacterController>();
+    }
+
+    private void Update() {
+        Vector2 inputVector = controlMap.ReadValue<Vector2>();
+        Vector3 finalVector = new Vector3(inputVector.x,0, inputVector.y);
+        
+        //Debug.Log(finalVector.ToString());
+        controller.Move(finalVector * Time.deltaTime * speed);
+    }
+}
