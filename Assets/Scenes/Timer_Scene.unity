@@ -1027,8 +1027,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284218106
-  m_fontColor: {r: 0.98107153, g: 0.9811321, b: 0.35542893, a: 1}
+    rgba: 4286381977
+  m_fontColor: {r: 0.5999767, g: 1, b: 0.48490566, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1254,13 +1254,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 588617619}
-  timeTxt: {fileID: 588617619}
-  timer: 0
-  seconds: 0
+  seconds: 30
   minutes: 1
-  hours: 0
-  fontColor: {r: 0.9803922, g: 0.9803922, b: 0.35686275, a: 0}
-  showMilliseconds: 1
+  showMilliseconds: 0
 --- !u!1001 &849004024
 PrefabInstance:
   m_ObjectHideFlags: 0
