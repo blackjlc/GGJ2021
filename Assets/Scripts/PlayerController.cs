@@ -11,7 +11,10 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public float interactRange;
 
+    public LayerMask interactableLayer;
+
     private CharacterController controller;
+    private new Transform transform;
 
     void OnEnable()
     {
@@ -31,6 +34,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        transform = GetComponent<Transform>();
     }
 
     private void Update()
@@ -44,6 +48,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleInteract(InputAction.CallbackContext obj)
     {
-        Debug.LogError("Interact not implemented!");
+        Collider[] interactables = Physics.OverlapSphere(transform.position, 1, interactableLayer);
+        interactables[0].GetComponent<IInteractable>().Interact();
     }
 }

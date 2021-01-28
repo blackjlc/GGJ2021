@@ -9,15 +9,19 @@ public class DoorInteractable : MonoBehaviour, IInteractable
     public float speed;
     public float range;
 
-    public void Interact() {
+    public void Interact()
+    {
         opened = !opened;
     }
-    
+
     void Update()
     {
-        if (opened && door.rotation.y < range) {
+        if (opened && door.rotation.y < range)
+        {
             door.Rotate(new Vector3(0, speed, 0) * Time.deltaTime);
-        } else if (!opened && door.rotation.y > 0) {
+        }
+        else if (!opened && door.rotation.y > 0)
+        {
             door.Rotate(new Vector3(0, -speed, 0) * Time.deltaTime);
         }
     }
