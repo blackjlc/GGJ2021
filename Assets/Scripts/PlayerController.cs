@@ -1,33 +1,49 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    private MyPlayerInput inputs;
     public InputAction controlMap;
     public float speed;
     public float interactRange;
 
     private CharacterController controller;
 
-    void OnEnable() {
+    void OnEnable()
+    {
+        inputs = new MyPlayerInput();
+        inputs.Movement.Interact.performed += HandleInteract;
+        inputs.Movement.Interact.Enable();
         controlMap.Enable();
     }
 
-    void OnDisable() {
+    void OnDisable()
+    {
+        inputs.Movement.Interact.performed -= HandleInteract;
+        inputs.Movement.Interact.Disable();
         controlMap.Disable();
     }
 
-    private void Awake() {
+    private void Awake()
+    {
         controller = GetComponent<CharacterController>();
     }
 
-    private void Update() {
+    private void Update()
+    {
         Vector2 inputVector = controlMap.ReadValue<Vector2>();
-        Vector3 finalVector = new Vector3(inputVector.x,0, inputVector.y);
-        
+        Vector3 finalVector = new Vector3(inputVector.x, 0, inputVector.y);
+
         //Debug.Log(finalVector.ToString());
         controller.Move(finalVector * Time.deltaTime * speed);
+    }
+
+    private void HandleInteract(InputAction.CallbackContext obj)
+    {
+        Debug.LogError("Interact not implemented!");
     }
 }
