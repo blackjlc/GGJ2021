@@ -241,6 +241,8 @@ MonoBehaviour:
   opened: 0
   speed: 120
   range: 0.7
+  keyName: 
+  locked: 0
 --- !u!65 &4467242820147454908
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -252,7 +254,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 2.11}
+  m_Size: {x: 1, y: 1, z: 1.8}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6000159499496946477
 GameObject:

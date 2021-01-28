@@ -17,16 +17,16 @@ public class PlayerController : MonoBehaviour
     public int dashDurationFrame = 60;
     public float dashSpeed;
     private bool interruptInput = false;
-
-    //PlayerData
+    
+    [Header("PlayerData")]
     public PlayerData playerData = new PlayerData();
 
-    // Interact
+    [Header("Interact")]
     public float interactRange;
     public LayerMask interactableLayer;
     private IInteractable highlightedInteractable;
-
-    // Animation
+    
+    [Header("Animation")]
     private bool isRight = true;
     public Animator animator;
     private int moveAniID;
@@ -35,6 +35,12 @@ public class PlayerController : MonoBehaviour
     private int carryAniID;
     private int pickKeyAniID;
     private int danceAniID;
+    
+    [Header("WalkEffects")]
+    public GameObject walkEffect;
+    public float effectTime;
+    public Vector3 effectOffset;
+    private float effectTimer;
 
     private CharacterController controller;
     private new Transform transform;
@@ -75,17 +81,20 @@ public class PlayerController : MonoBehaviour
         carryAniID = Animator.StringToHash("carry");
         pickKeyAniID = Animator.StringToHash("pick_key");
         danceAniID = Animator.StringToHash("dance");
+        effectTimer = effectTime;
     }
 
     private void Update()
     {
-        if (!interruptInput)
-        {
+        if (!interruptInput) {
             Vector2 inputVector = controlMap.ReadValue<Vector2>();
             Vector3 finalVector = new Vector3(inputVector.x, 0, inputVector.y);
             HandleAnimation(finalVector.x, finalVector.sqrMagnitude > 0 ? 1 : 0);
             // Debug.Log(finalVector.ToString());
             controller.Move(finalVector * Time.deltaTime * speed);
+            if (finalVector.magnitude != 0f) {
+                HandleWalkEffect();
+            }
         }
         HighlightInteract();
     }
@@ -129,6 +138,17 @@ public class PlayerController : MonoBehaviour
             isRight = speedX > 0;
         animator.SetFloat(moveXAniID, isRight ? 1f : -1f);
         animator.SetFloat(moveSpeedAniID, speed);
+    }
+
+    private void HandleWalkEffect() {
+        if (effectTimer < 0) {
+            Vector3 pos = transform.position + effectOffset;
+            GameObject effect = Instantiate(walkEffect, pos, Quaternion.identity);
+            Destroy(effect, .6f);
+            effectTimer = effectTime;
+        } else {
+            effectTimer -= Time.deltaTime;
+        }
     }
 
     private void OnMove(InputAction.CallbackContext context)
