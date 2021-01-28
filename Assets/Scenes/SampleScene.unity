@@ -1215,6 +1215,8 @@ MonoBehaviour:
       m_Action: Control Map
       m_Flags: 8
   speed: 3.5
+  dashDurationFrame: 60
+  dashSpeed: 6
   interactRange: 1
   interactableLayer:
     serializedVersion: 2
