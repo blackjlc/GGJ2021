@@ -546,6 +546,7 @@ GameObject:
   - component: {fileID: 6419455249738941677}
   - component: {fileID: 6419455249738941672}
   - component: {fileID: 6419455249738941676}
+  - component: {fileID: 6014489649762017791}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -636,7 +637,6 @@ MonoBehaviour:
   interactableLayer:
     serializedVersion: 2
     m_Bits: 256
-  animator: {fileID: 6419455250335102834}
   walkEffect: {fileID: 4409215365759568138, guid: e1df13f3524723045b82d30627d7227b, type: 3}
   effectTime: 0.35
   effectOffset: {x: 0, y: -0.4, z: -0.1}
@@ -674,6 +674,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6014489649762017791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6419455249738941678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17822ee80aa892e449b610ac8329ff2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 6419455250335102834}
 --- !u!1 &6419455249842915146
 GameObject:
   m_ObjectHideFlags: 0

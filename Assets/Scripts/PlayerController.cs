@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public int dashDurationFrame = 60;
     public float dashSpeed;
     private bool interruptInput = false;
-    
+
     [Header("PlayerData")]
     public PlayerData playerData = new PlayerData();
 
@@ -25,17 +25,10 @@ public class PlayerController : MonoBehaviour
     public float interactRange;
     public LayerMask interactableLayer;
     private IInteractable highlightedInteractable;
-    
+
     [Header("Animation")]
-    private bool isRight = true;
-    public Animator animator;
-    private int moveAniID;
-    private int moveXAniID;
-    private int moveSpeedAniID;
-    private int carryAniID;
-    private int pickKeyAniID;
-    private int danceAniID;
-    
+    private AnimationController anim;
+
     [Header("WalkEffects")]
     public GameObject walkEffect;
     public float effectTime;
@@ -74,25 +67,21 @@ public class PlayerController : MonoBehaviour
         onMove = new MoveEvent();
         controller = GetComponent<CharacterController>();
         transform = GetComponent<Transform>();
-        Assert.IsNotNull(animator, "Animator should not be null!!");
-        moveAniID = Animator.StringToHash("move");
-        moveXAniID = Animator.StringToHash("move_x");
-        moveSpeedAniID = Animator.StringToHash("move_speed");
-        carryAniID = Animator.StringToHash("carry");
-        pickKeyAniID = Animator.StringToHash("pick_key");
-        danceAniID = Animator.StringToHash("dance");
+        anim = GetComponent<AnimationController>();
         effectTimer = effectTime;
     }
 
     private void Update()
     {
-        if (!interruptInput) {
+        if (!interruptInput)
+        {
             Vector2 inputVector = controlMap.ReadValue<Vector2>();
             Vector3 finalVector = new Vector3(inputVector.x, 0, inputVector.y);
-            HandleAnimation(finalVector.x, finalVector.sqrMagnitude > 0 ? 1 : 0);
+            anim.HandleAnimation(finalVector.x, finalVector.sqrMagnitude > 0 ? 1 : 0);
             // Debug.Log(finalVector.ToString());
             controller.Move(finalVector * Time.deltaTime * speed);
-            if (finalVector.magnitude != 0f) {
+            if (finalVector.magnitude != 0f)
+            {
                 HandleWalkEffect();
             }
         }
@@ -102,23 +91,31 @@ public class PlayerController : MonoBehaviour
     private void HandleInteract(InputAction.CallbackContext context)
     {
         GameObject go = highlightedInteractable?.Interact(playerData);
-        if(go != null && go.GetComponent<IPickupable>() != null) {
-            if(playerData.item != null) {
+        if (go != null && go.GetComponent<IPickupable>() != null)
+        {
+            if (playerData.item != null)
+            {
                 playerData.item.Drop();
             }
             playerData.item = go.GetComponent<IPickupable>();
         }
     }
 
-    private void HighlightInteract() {
+    private void HighlightInteract()
+    {
         Collider[] interactables = Physics.OverlapSphere(transform.position, interactRange, interactableLayer);
-        if (interactables.Length <= 0 && highlightedInteractable != null) {
+        if (interactables.Length <= 0 && highlightedInteractable != null)
+        {
             highlightedInteractable.ToggleHighlight();
             highlightedInteractable = null;
-        } else if (interactables.Length > 0){
+        }
+        else if (interactables.Length > 0)
+        {
             IInteractable targetInteractable = interactables[0].GetComponent<IInteractable>();
-            if (targetInteractable != highlightedInteractable && targetInteractable != null && targetInteractable.CanInteract()) {
-                if (highlightedInteractable != null) {
+            if (targetInteractable != highlightedInteractable && targetInteractable != null && targetInteractable.CanInteract())
+            {
+                if (highlightedInteractable != null)
+                {
                     highlightedInteractable.ToggleHighlight();
                 }
                 highlightedInteractable = targetInteractable;
@@ -127,26 +124,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="speedX"></param>
-    /// <param name="speed">0 for idle. 1 for walk. 2 for dash</param>
-    private void HandleAnimation(float speedX, float speed)
+    private void HandleWalkEffect()
     {
-        if (speedX != 0)
-            isRight = speedX > 0;
-        animator.SetFloat(moveXAniID, isRight ? 1f : -1f);
-        animator.SetFloat(moveSpeedAniID, speed);
-    }
-
-    private void HandleWalkEffect() {
-        if (effectTimer < 0) {
+        if (effectTimer < 0)
+        {
             Vector3 pos = transform.position + effectOffset;
             GameObject effect = Instantiate(walkEffect, pos, Quaternion.identity);
             Destroy(effect, .6f);
             effectTimer = effectTime;
-        } else {
+        }
+        else
+        {
             effectTimer -= Time.deltaTime;
         }
     }
@@ -169,7 +157,7 @@ public class PlayerController : MonoBehaviour
                 Vector3 finalVector = new Vector3(firstMove.x, 0, firstMove.y);
                 await UniTaskAsyncEnumerable.EveryUpdate().Take(60).ForEachAsync(_ =>
                 {
-                    HandleAnimation(finalVector.x, 2);
+                    anim.HandleAnimation(finalVector.x, 2);
                     controller.Move(finalVector * Time.deltaTime * dashSpeed);
                 });
                 interruptInput = false;
