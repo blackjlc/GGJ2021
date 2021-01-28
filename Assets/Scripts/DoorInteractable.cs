@@ -8,10 +8,20 @@ public class DoorInteractable : MonoBehaviour, IInteractable
     public bool opened;
     public float speed;
     public float range;
+    public bool locked;
 
-    public void Interact()
+    public GameObject Interact()
     {
         opened = !opened;
+        return gameObject;
+    }
+
+    public bool CanInteract() {
+        return !locked;
+    }
+
+    public void ToggleHighlight() {
+        Debug.Log("Toggle Highlight for " + gameObject.name);
     }
 
     void Update()

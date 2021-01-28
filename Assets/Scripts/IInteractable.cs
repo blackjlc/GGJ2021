@@ -1,4 +1,9 @@
-﻿public interface IInteractable
+﻿using UnityEngine;
+public interface IInteractable
 {
-    void Interact();
+    GameObject Interact();
+
+    bool CanInteract();
+
+    void ToggleHighlight();
 }

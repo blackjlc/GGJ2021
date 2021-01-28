@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     // Interact
     public float interactRange;
     public LayerMask interactableLayer;
+    private IInteractable highlightedInteractable;
 
     // Animation
     private bool isRight = true;
@@ -83,12 +84,29 @@ public class PlayerController : MonoBehaviour
             // Debug.Log(finalVector.ToString());
             controller.Move(finalVector * Time.deltaTime * speed);
         }
+        HighlightInteract();
     }
 
     private void HandleInteract(InputAction.CallbackContext context)
     {
+        highlightedInteractable?.Interact();
+    }
+
+    private void HighlightInteract() {
         Collider[] interactables = Physics.OverlapSphere(transform.position, interactRange, interactableLayer);
-        interactables[0].GetComponent<IInteractable>().Interact();
+        if (interactables.Length <= 0 && highlightedInteractable != null) {
+            highlightedInteractable.ToggleHighlight();
+            highlightedInteractable = null;
+        } else if (interactables.Length > 0){
+            IInteractable targetInteractable = interactables[0].GetComponent<IInteractable>();
+            if (targetInteractable != highlightedInteractable && targetInteractable != null && targetInteractable.CanInteract()) {
+                if (highlightedInteractable != null) {
+                    highlightedInteractable.ToggleHighlight();
+                }
+                highlightedInteractable = targetInteractable;
+                highlightedInteractable.ToggleHighlight();
+            }
+        }
     }
 
     /// <summary>

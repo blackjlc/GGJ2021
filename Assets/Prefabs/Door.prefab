@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6000159498965445800}
   - component: {fileID: 6000159498965445801}
   - component: {fileID: 6000159498965445806}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DoorBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 6000159499379416532}
   - component: {fileID: 6000159499379416533}
   - component: {fileID: 6000159499379416522}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RightBeam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -200,7 +200,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6000159499396593071}
   - component: {fileID: 6000159499396593070}
-  m_Layer: 0
+  - component: {fileID: 4467242820147454908}
+  m_Layer: 8
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,6 +241,19 @@ MonoBehaviour:
   opened: 0
   speed: 120
   range: 0.7
+--- !u!65 &4467242820147454908
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6000159499396593068}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 2.11}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6000159499496946477
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +263,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6000159499496946476}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DoorHinge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,7 +297,7 @@ GameObject:
   - component: {fileID: 6000159500317556770}
   - component: {fileID: 6000159500317556771}
   - component: {fileID: 6000159500317556768}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LeftBean
   m_TagString: Untagged
   m_Icon: {fileID: 0}
