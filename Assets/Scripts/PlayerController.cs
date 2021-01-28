@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
     public float dashSpeed;
     private bool interruptInput = false;
 
+    //PlayerData
+    public PlayerData playerData = new PlayerData();
+
     // Interact
     public float interactRange;
     public LayerMask interactableLayer;
@@ -89,7 +92,13 @@ public class PlayerController : MonoBehaviour
 
     private void HandleInteract(InputAction.CallbackContext context)
     {
-        highlightedInteractable?.Interact();
+        GameObject go = highlightedInteractable?.Interact(playerData);
+        if(go != null && go.GetComponent<IPickupable>() != null) {
+            if(playerData.item != null) {
+                playerData.item.Drop();
+            }
+            playerData.item = go.GetComponent<IPickupable>();
+        }
     }
 
     private void HighlightInteract() {

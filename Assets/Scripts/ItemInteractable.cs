@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemInteractable : MonoBehaviour, IInteractable
+public class ItemInteractable : MonoBehaviour, IInteractable, IPickupable
 {
     public string name;
     public float moveSpeed;
@@ -11,7 +11,8 @@ public class ItemInteractable : MonoBehaviour, IInteractable
     Transform playerTransform;
     public bool following;
 
-    public GameObject Interact() {
+    #region <<IInteractable>>
+    public GameObject Interact(PlayerData playerData) {
         GetComponent<Collider>().enabled = false;
         following = true;
         return gameObject;
@@ -22,13 +23,25 @@ public class ItemInteractable : MonoBehaviour, IInteractable
     }
 
     public void ToggleHighlight() {
+        //TODO
         Debug.Log("Toggle Highlight for " + gameObject.name);
+    }
+    #endregion
+
+    #region <<IPickupable>>
+    public string GetName() {
+        return name;
+    }
+
+    public void Use() {
+        Destroy(gameObject);
     }
 
     public void Drop() {
         GetComponent<Collider>().enabled = true;
         following = false;
     }
+    #endregion
 
     void Awake() {
         playerTransform = GameObject.Find("Player").transform;

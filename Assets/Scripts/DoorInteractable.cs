@@ -6,21 +6,36 @@ public class DoorInteractable : MonoBehaviour, IInteractable
 {
     public Transform door;
     public bool opened;
+
+    [Header("Animation")]
     public float speed;
     public float range;
+
+    [Header("Lock")]
+    public string keyName;
     public bool locked;
 
-    public GameObject Interact()
+    public GameObject Interact(PlayerData playerData)
     {
-        opened = !opened;
+        if ((locked && playerData.item != null && playerData.item.GetName() == keyName)) {//Locked Door
+            IPickupable tmpItem = playerData.item;
+            playerData.item = null;
+            tmpItem.Use();
+            locked = false;
+            opened = !opened;
+        }else if (!locked) {//UnLocked Door
+            opened = !opened;
+        }
         return gameObject;
     }
 
     public bool CanInteract() {
-        return !locked;
+        //return !locked;
+        return true;
     }
 
     public void ToggleHighlight() {
+        //TODO
         Debug.Log("Toggle Highlight for " + gameObject.name);
     }
 

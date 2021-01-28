@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 public interface IInteractable
 {
-    GameObject Interact();
+    GameObject Interact(PlayerData playerData);
 
     bool CanInteract();
 
