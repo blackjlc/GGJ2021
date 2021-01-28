@@ -8,6 +8,7 @@ using Cysharp.Threading.Tasks;
 using System.Threading;
 using UnityEngine.Events;
 using Cysharp.Threading.Tasks.Linq;
+using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 effectOffset;
     private float effectTimer;
 
+    private DrunkController drunk;
     private CharacterController controller;
     private new Transform transform;
     private MoveEvent onMove;
@@ -68,6 +70,7 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         transform = GetComponent<Transform>();
         anim = GetComponent<AnimationController>();
+        drunk = GetComponent<DrunkController>();
         effectTimer = effectTime;
     }
 
@@ -77,6 +80,7 @@ public class PlayerController : MonoBehaviour
         {
             Vector2 inputVector = controlMap.ReadValue<Vector2>();
             Vector3 finalVector = new Vector3(inputVector.x, 0, inputVector.y);
+            finalVector = drunk.GetDrunkQuaternion() * finalVector;
             anim.HandleAnimation(finalVector.x, finalVector.sqrMagnitude > 0 ? 1 : 0);
             // Debug.Log(finalVector.ToString());
             controller.Move(finalVector * Time.deltaTime * speed);
