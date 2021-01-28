@@ -1280,7 +1280,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 588775742}
-  m_LocalRotation: {x: 0.2503459, y: -0.000000018624734, z: 0.0000000048159827, w: 0.9681565}
+  m_LocalRotation: {x: 0.2503459, y: 0.000000018624736, z: -0.000000004815983, w: 0.9681565}
   m_LocalPosition: {x: 0, y: 1.8399999, z: -3.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1447,10 +1447,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 588617619}
+  timeTxt: {fileID: 588617619}
+  timer: 0
   seconds: 0
-  mins: 30
+  minutes: 1
+  hours: 0
   fontColor: {r: 0.9803922, g: 0.9803922, b: 0.35686275, a: 0}
-  showMilliseconds: 0
+  showMilliseconds: 1
 --- !u!1 &623856094
 GameObject:
   m_ObjectHideFlags: 3
@@ -2755,7 +2758,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
-  m_LocalRotation: {x: 0.2503459, y: -0.000000018624734, z: 0.0000000048159827, w: 0.9681565}
+  m_LocalRotation: {x: 0.2503459, y: 0.000000018624736, z: -0.000000004815983, w: 0.9681565}
   m_LocalPosition: {x: 0, y: 1.5999999, z: -6.627}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

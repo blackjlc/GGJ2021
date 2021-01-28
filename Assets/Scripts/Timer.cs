@@ -7,9 +7,12 @@ using System;
 public class Timer : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
+    public TMP_Text timeTxt;
+    public float timer = 0.0f;
 
     public int seconds;
-    public int mins;
+    public int minutes;
+    public int hours;
 
     public Color fontColor;
 
@@ -22,7 +25,7 @@ public class Timer : MonoBehaviour
     {
         timerText.color = fontColor;
         timerDefault = 0;
-        timerDefault += (seconds + (mins * 60));
+        timerDefault += (seconds + (minutes * 60) + (hours * 60 * 60));
         currentSeconds = timerDefault;
     }
 
@@ -36,17 +39,25 @@ public class Timer : MonoBehaviour
         else
         {
             if (showMilliseconds)
-                timerText.text = TimeSpan.FromSeconds(currentSeconds).ToString(@"mm\:ss\:fff");
+                timerText.text = TimeSpan.FromSeconds(currentSeconds).ToString(@"hh\:mm\:ss\:fff");
             else
-                timerText.text = TimeSpan.FromSeconds(currentSeconds).ToString(@"mm\:ss");
+                timerText.text = TimeSpan.FromSeconds(currentSeconds).ToString(@"hh\:mm\:ss");
         }
     }
 
     private void TimeUp()
     {
         if (showMilliseconds)
-            timerText.text = "00:00:000";
+            timerText.text = "00:00:00:000";
         else
-            timerText.text = "00:00";
+            timerText.text = "00:00:00";
     }
+
+    void DosplayTimer()
+    {
+        minutes = Mathf.FloorToInt(timer / 60.0f);
+        seconds = Mathf.FloorToInt(timer - minutes * 60);
+        timeTxt.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
 }
