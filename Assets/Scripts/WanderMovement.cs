@@ -11,13 +11,19 @@ public class WanderMovement : MonoBehaviour
 
     Vector3 wayPoint;
 
-    private bool IsInsideBoundary(Vector3 point) {
+    private AnimationController anim;
+    private new Transform transform;
+
+    private bool IsInsideBoundary(Vector3 point)
+    {
         return Vector3.Distance(point, origin) < radius;
     }
 
-    private void SetDestination() {
+    private void SetDestination()
+    {
         Vector3 destination = new Vector3();
-        do {
+        do
+        {
             destination.x = transform.position.x + Random.Range(-range, range);
             destination.y = transform.position.y;
             destination.z = transform.position.z + Random.Range(-range, range);
@@ -29,19 +35,25 @@ public class WanderMovement : MonoBehaviour
 
     void Start()
     {
+        anim = GetComponent<AnimationController>();
+        transform = GetComponent<Transform>();
         SetDestination();
     }
 
-    
+
     void Update()
     {
+        Vector3 dir = (wayPoint - transform.position);
         transform.position = Vector3.MoveTowards(transform.position, wayPoint, speed * Time.deltaTime);
-        if(Vector3.Distance(transform.position, wayPoint) < 0.1f) {
+        anim.HandleAnimation(dir.x, 1);
+        if (Vector3.Distance(transform.position, wayPoint) < 0.1f)
+        {
             SetDestination();
         }
     }
 
-    private void OnDrawGizmos() {
+    private void OnDrawGizmos()
+    {
         Gizmos.DrawWireSphere(origin, radius);
     }
 }
