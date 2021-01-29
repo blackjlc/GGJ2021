@@ -11,8 +11,10 @@ public class ExitInteractable : MonoBehaviour, IInteractable {
     }
 
     public GameObject Interact(PlayerData playerData) {
-        gm.SaveFriend(playerData.carryingFriend);
-        playerData.carryingFriend = "";
+        if (gm.friendsName.Contains(playerData.carryingFriend)) {
+            gm.SaveFriend(playerData.carryingFriend);
+            playerData.carryingFriend = "";
+        }
         return gameObject;
     }
 
