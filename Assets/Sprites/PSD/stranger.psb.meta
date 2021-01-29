@@ -105,12 +105,12 @@ ScriptedImporter:
     spriteBone:
     - name: uptorso
       position: {x: 392.4707, y: -358.28296, z: 0}
-      rotation: {x: 0, y: 0, z: 0.5386511, w: 0.842529}
-      length: 1420.9694
+      rotation: {x: 0, y: 0, z: 0.538651, w: 0.84252906}
+      length: 1420.9696
       parentId: -1
     - name: head
-      position: {x: 1420.9696, y: -0.00046267465, z: 0}
-      rotation: {x: 0, y: 0, z: 0.11953041, w: 0.9928305}
+      position: {x: 1420.9695, y: 0.000101401005, z: 0}
+      rotation: {x: 0, y: 0, z: 0.11953056, w: 0.9928306}
       length: 1315.5825
       parentId: 0
     spriteOutline: []
@@ -490,24 +490,24 @@ ScriptedImporter:
       length: 192.0036
       parentId: -1
     - name: uparm-R
-      position: {x: 682.5542, y: 131.65007, z: 0}
-      rotation: {x: 0, y: 0, z: -0.9823155, w: 0.18723316}
-      length: 1185.5374
+      position: {x: 682.55396, y: 131.65031, z: 0}
+      rotation: {x: 0, y: 0, z: -0.98231554, w: 0.18723339}
+      length: 1185.5378
       parentId: 4
     - name: loarm-R
-      position: {x: 1185.5376, y: 0.000025736794, z: 0}
-      rotation: {x: 0, y: 0, z: 0.25991398, w: 0.96563184}
-      length: 1034.7805
+      position: {x: 1185.5376, y: 0.00007570038, z: 0}
+      rotation: {x: 0, y: 0, z: 0.2599139, w: 0.9656318}
+      length: 1034.7809
       parentId: 1
     - name: hand-R
-      position: {x: 1034.7812, y: 0.00008807704, z: 0}
-      rotation: {x: 0, y: 0, z: -0.30399054, w: 0.9526751}
-      length: 588.2534
+      position: {x: 1034.7808, y: -0.0010557198, z: 0}
+      rotation: {x: 0, y: 0, z: -0.30399063, w: 0.9526751}
+      length: 588.2533
       parentId: 2
     - name: uptorso
       position: {x: 580.4707, y: 2105.7168, z: 0}
-      rotation: {x: 0, y: 0, z: 0.5386511, w: 0.842529}
-      length: 1420.9694
+      rotation: {x: 0, y: 0, z: 0.538651, w: 0.84252906}
+      length: 1420.9696
       parentId: -1
     spriteOutline: []
     vertices:
@@ -1242,43 +1242,43 @@ ScriptedImporter:
       parentId: 0
     - name: upleg-L
       position: {x: 110.8098, y: -232.43661, z: 0}
-      rotation: {x: 0, y: 0, z: 0.9966277, w: 0.082056284}
-      length: 972.05194
+      rotation: {x: 0, y: 0, z: 0.9966277, w: 0.08205641}
+      length: 972.05225
       parentId: 0
     - name: loarm-R
-      position: {x: 1185.5371, y: 0.0004174092, z: 0}
+      position: {x: 1185.5374, y: 0.00009760349, z: 0}
       rotation: {x: 0, y: 0, z: 0.25991395, w: 0.9656318}
-      length: 1034.7804
+      length: 1034.7811
       parentId: 7
     - name: loarm-L
-      position: {x: 1056.1086, y: 0.00050823943, z: 0}
-      rotation: {x: 0, y: 0, z: 0.05561073, w: 0.99845254}
-      length: 1110.557
+      position: {x: 1056.1086, y: 0.00047812, z: 0}
+      rotation: {x: 0, y: 0, z: 0.055610772, w: 0.9984526}
+      length: 1110.5569
       parentId: 5
     - name: uparm-L
-      position: {x: 775.17816, y: -143.45383, z: 0}
-      rotation: {x: 0, y: 0, z: -0.9498356, w: 0.31274956}
-      length: 1056.1094
+      position: {x: 775.17944, y: -143.45428, z: 0}
+      rotation: {x: 0, y: 0, z: -0.94983566, w: 0.31274942}
+      length: 1056.109
       parentId: 6
     - name: uptorso
       position: {x: 625.517, y: 0.000066655375, z: 0}
-      rotation: {x: 0, y: 0, z: -0.31065246, w: 0.95052356}
-      length: 1420.9696
+      rotation: {x: 0, y: 0, z: -0.31065255, w: 0.95052356}
+      length: 1420.9697
       parentId: 9
     - name: uparm-R
-      position: {x: 682.55304, y: 131.65031, z: 0}
-      rotation: {x: 0, y: 0, z: -0.9823155, w: 0.18723318}
-      length: 1185.5376
+      position: {x: 682.55365, y: 131.65009, z: 0}
+      rotation: {x: 0, y: 0, z: -0.98231554, w: 0.18723334}
+      length: 1185.5375
       parentId: 6
     - name: head
-      position: {x: 1420.9689, y: -0.00012371756, z: 0}
-      rotation: {x: 0, y: 0, z: 0.11953044, w: 0.9928306}
+      position: {x: 1420.9695, y: 0.00007674625, z: 0}
+      rotation: {x: 0, y: 0, z: 0.119530536, w: 0.9928305}
       length: 1315.5828
       parentId: 6
     - name: lotorso
       position: {x: 192.0034, y: -0.000019752362, z: 0}
       rotation: {x: 0, y: 0, z: -0.11375173, w: 0.99350923}
-      length: 625.5163
+      length: 625.5165
       parentId: 0
     spriteOutline: []
     vertices:
@@ -1484,18 +1484,18 @@ ScriptedImporter:
         boneIndex3: 0
     - position: {x: 1066.976, y: 233.94824}
       boneWeight:
-        weight0: 1
-        weight1: 0
+        weight0: 0.41000003
+        weight1: 0.59
         weight2: 0
         weight3: 0
         boneIndex0: 9
-        boneIndex1: 3
+        boneIndex1: 2
         boneIndex2: 0
         boneIndex3: 0
     - position: {x: 1408.824, y: 359.58398}
       boneWeight:
-        weight0: 0.83
-        weight1: 0.17000002
+        weight0: 0.48000002
+        weight1: 0.52
         weight2: 0
         weight3: 0
         boneIndex0: 9
@@ -2054,24 +2054,24 @@ ScriptedImporter:
     internalID: 0
     spriteBone:
     - name: hand-L
-      position: {x: 1110.5569, y: 0.00010512324, z: 0}
-      rotation: {x: 0, y: 0, z: -0.33756503, w: 0.94130224}
-      length: 653.7498
+      position: {x: 1110.5577, y: -0.00008068148, z: 0}
+      rotation: {x: 0, y: 0, z: -0.33756503, w: 0.9413023}
+      length: 653.7496
       parentId: 1
     - name: loarm-L
-      position: {x: 1056.1091, y: 0.0005606792, z: 0}
-      rotation: {x: 0, y: 0, z: 0.055610754, w: 0.99845254}
-      length: 1110.5571
+      position: {x: 1056.1084, y: 0.00048006588, z: 0}
+      rotation: {x: 0, y: 0, z: 0.055610776, w: 0.99845254}
+      length: 1110.5569
       parentId: 2
     - name: uparm-L
-      position: {x: 2.0283203, y: 3427.1055, z: 0}
-      rotation: {x: 0, y: 0, z: -0.6318011, w: 0.7751305}
-      length: 1056.1091
+      position: {x: 2.0288086, y: 3427.1055, z: 0}
+      rotation: {x: 0, y: 0, z: -0.6318013, w: 0.77513033}
+      length: 1056.1093
       parentId: -1
     - name: loarm-R
-      position: {x: -353.41943, y: 2274.8477, z: 0}
-      rotation: {x: 0, y: 0, z: -0.5232696, w: 0.8521672}
-      length: 1034.7805
+      position: {x: -353.41992, y: 2274.8472, z: 0}
+      rotation: {x: 0, y: 0, z: -0.52326965, w: 0.85216725}
+      length: 1034.7808
       parentId: -1
     spriteOutline: []
     vertices:
@@ -2641,14 +2641,14 @@ ScriptedImporter:
     internalID: 0
     spriteBone:
     - name: foot-R
-      position: {x: 1644.6908, y: 0.000076452154, z: 0}
+      position: {x: 1644.6908, y: -0.000052984742, z: 0}
       rotation: {x: 0, y: 0, z: 0.73085004, w: 0.68253815}
-      length: 564.8319
+      length: 564.8318
       parentId: 1
     - name: loleg-R
       position: {x: 1439.598, y: 1634.8154, z: 0}
       rotation: {x: 0, y: 0, z: 0.9191626, w: -0.39387843}
-      length: 1644.691
+      length: 1644.6912
       parentId: -1
     - name: pevis
       position: {x: 1556.3555, y: 2428.7065, z: 0}
@@ -3271,7 +3271,7 @@ ScriptedImporter:
     - name: loleg-R
       position: {x: 1012.52386, y: 0.00008233962, z: 0}
       rotation: {x: 0, y: 0, z: -0.49662113, w: 0.8679674}
-      length: 1644.6913
+      length: 1644.6915
       parentId: 1
     - name: upleg-R
       position: {x: 326.98975, y: 285.1726, z: 0}
@@ -3734,13 +3734,13 @@ ScriptedImporter:
       parentId: -1
     - name: upleg-L
       position: {x: 110.80981, y: -232.43674, z: 0}
-      rotation: {x: 0, y: 0, z: 0.9966277, w: 0.082056284}
-      length: 972.05194
+      rotation: {x: 0, y: 0, z: 0.9966277, w: 0.08205641}
+      length: 972.05225
       parentId: 0
     - name: loleg-L
-      position: {x: 972.0524, y: -0.00022306576, z: 0}
-      rotation: {x: 0, y: 0, z: -0.26874256, w: 0.9632121}
-      length: 1515.8103
+      position: {x: 972.0514, y: -0.00021590645, z: 0}
+      rotation: {x: 0, y: 0, z: -0.2687424, w: 0.96321213}
+      length: 1515.8102
       parentId: 1
     spriteOutline: []
     vertices:
@@ -3836,8 +3836,8 @@ ScriptedImporter:
         boneIndex3: 0
     - position: {x: 338.64014, y: 2174.58}
       boneWeight:
-        weight0: 0.9
-        weight1: 0.100000024
+        weight0: 0.58000004
+        weight1: 0.42
         weight2: 0
         weight3: 0
         boneIndex0: 0
@@ -3846,8 +3846,8 @@ ScriptedImporter:
         boneIndex3: 0
     - position: {x: 131.91211, y: 2110.308}
       boneWeight:
-        weight0: 0.8
-        weight1: 0.19999999
+        weight0: 0.48000002
+        weight1: 0.52
         weight2: 0
         weight3: 0
         boneIndex0: 0
@@ -4129,24 +4129,24 @@ ScriptedImporter:
     internalID: 0
     spriteBone:
     - name: foot-L
-      position: {x: 1515.8103, y: -0.00034606803, z: 0}
-      rotation: {x: 0, y: 0, z: 0.7675629, w: 0.6409736}
-      length: 594.2173
+      position: {x: 1515.8107, y: 0.00061587547, z: 0}
+      rotation: {x: 0, y: 0, z: 0.76756287, w: 0.6409736}
+      length: 594.21735
       parentId: 1
     - name: loleg-L
-      position: {x: 972.0524, y: 0.0006062436, z: 0}
-      rotation: {x: 0, y: 0, z: -0.26874256, w: 0.9632121}
-      length: 1515.8103
+      position: {x: 972.05096, y: -0.00060067064, z: 0}
+      rotation: {x: 0, y: 0, z: -0.2687424, w: 0.96321213}
+      length: 1515.8102
       parentId: 2
     - name: upleg-L
       position: {x: 110.81003, y: -232.43674, z: 0}
-      rotation: {x: 0, y: 0, z: 0.9966277, w: 0.082056284}
-      length: 972.05194
+      rotation: {x: 0, y: 0, z: 0.9966277, w: 0.08205641}
+      length: 972.05225
       parentId: 4
     - name: hand-R
-      position: {x: 633.6924, y: 1741.0024, z: 0}
-      rotation: {x: 0, y: 0, z: -0.7575566, w: 0.6527695}
-      length: 588.2533
+      position: {x: 633.6919, y: 1741.002, z: 0}
+      rotation: {x: 0, y: 0, z: -0.7575567, w: 0.6527694}
+      length: 588.2534
       parentId: -1
     - name: pevis
       position: {x: 268.35547, y: 2384.7065, z: 0}
@@ -4644,7 +4644,7 @@ ScriptedImporter:
     spriteBone:
     - name: head
       position: {x: -775.1338, y: -976.5283, z: 0}
-      rotation: {x: 0, y: 0, z: 0.6354971, w: 0.7721033}
+      rotation: {x: 0, y: 0, z: 0.6354971, w: 0.77210325}
       length: 1315.5825
       parentId: -1
     spriteOutline: []
@@ -5246,46 +5246,46 @@ ScriptedImporter:
     - name: lotorso
       position: {x: 192.00357, y: -0.000004672387, z: 0}
       rotation: {x: 0, y: 0, z: -0.113751724, w: 0.99350923}
-      length: 625.51624
+      length: 625.5164
       parentId: 0
     - name: uptorso
-      position: {x: 625.51636, y: -0.000076771445, z: 0}
-      rotation: {x: 0, y: 0, z: -0.31065246, w: 0.95052356}
-      length: 1420.9696
+      position: {x: 625.51654, y: -0.00012494753, z: 0}
+      rotation: {x: 0, y: 0, z: -0.31065258, w: 0.95052356}
+      length: 1420.9697
       parentId: 1
     - name: head
-      position: {x: 1420.9697, y: -0.000103331084, z: 0}
-      rotation: {x: 0, y: 0, z: 0.11953045, w: 0.9928306}
+      position: {x: 1420.9697, y: 0.0002950342, z: 0}
+      rotation: {x: 0, y: 0, z: 0.11953056, w: 0.9928306}
       length: 1315.5826
       parentId: 2
     - name: uparm-R
       position: {x: 682.55396, y: 131.65038, z: 0}
-      rotation: {x: 0, y: 0, z: -0.98231554, w: 0.1872332}
-      length: 1185.5372
+      rotation: {x: 0, y: -0, z: -0.98231554, w: 0.18723333}
+      length: 1185.5376
       parentId: 2
     - name: loarm-R
-      position: {x: 1185.5375, y: 0.00036201614, z: 0}
-      rotation: {x: 0, y: 0, z: 0.25991395, w: 0.9656318}
-      length: 1034.7804
+      position: {x: 1185.5378, y: 0.00016476012, z: 0}
+      rotation: {x: 0, y: 0, z: 0.2599139, w: 0.9656318}
+      length: 1034.7809
       parentId: 4
     - name: hand-R
-      position: {x: 1034.7808, y: -0.00006669614, z: 0}
-      rotation: {x: 0, y: 0, z: -0.3039905, w: 0.9526751}
+      position: {x: 1034.7809, y: -0.00029442692, z: 0}
+      rotation: {x: 0, y: 0, z: -0.30399057, w: 0.95267504}
       length: 588.2533
       parentId: 5
     - name: uparm-L
       position: {x: 775.17957, y: -143.45389, z: 0}
-      rotation: {x: 0, y: 0, z: -0.94983566, w: 0.31274953}
-      length: 1056.1093
+      rotation: {x: 0, y: -0, z: -0.94983566, w: 0.31274948}
+      length: 1056.1094
       parentId: 2
     - name: loarm-L
-      position: {x: 1056.1093, y: 0.00007644921, z: 0}
+      position: {x: 1056.1093, y: 0.00024908996, z: 0}
       rotation: {x: 0, y: 0, z: 0.055610765, w: 0.99845254}
       length: 1110.5571
       parentId: 7
     - name: hand-L
-      position: {x: 1110.557, y: -0.000059050573, z: 0}
-      rotation: {x: 0, y: 0, z: -0.33756503, w: 0.94130224}
+      position: {x: 1110.5569, y: -0.000000860462, z: 0}
+      rotation: {x: 0, y: 0, z: -0.337565, w: 0.9413023}
       length: 653.74976
       parentId: 8
     - name: upleg-R
@@ -5296,26 +5296,26 @@ ScriptedImporter:
     - name: loleg-R
       position: {x: 1012.5241, y: 0.00015512327, z: 0}
       rotation: {x: 0, y: 0, z: -0.49662122, w: 0.86796737}
-      length: 1644.6913
+      length: 1644.6915
       parentId: 10
     - name: foot-R
-      position: {x: 1644.6913, y: 0.00011466615, z: 0}
-      rotation: {x: 0, y: 0, z: 0.73085004, w: 0.68253815}
+      position: {x: 1644.6913, y: 0.000026277892, z: 0}
+      rotation: {x: 0, y: 0, z: 0.73085004, w: 0.6825381}
       length: 564.832
       parentId: 11
     - name: upleg-L
       position: {x: 110.80973, y: -232.43646, z: 0}
-      rotation: {x: 0, y: -0, z: 0.9966277, w: 0.08205626}
-      length: 972.05194
+      rotation: {x: 0, y: -0, z: 0.9966277, w: 0.08205639}
+      length: 972.0521
       parentId: 0
     - name: loleg-L
-      position: {x: 972.0521, y: -0.00015977524, z: 0}
-      rotation: {x: 0, y: 0, z: -0.2687426, w: 0.9632121}
+      position: {x: 972.0518, y: 0.000025982685, z: 0}
+      rotation: {x: 0, y: 0, z: -0.26874244, w: 0.9632121}
       length: 1515.8103
       parentId: 13
     - name: foot-L
-      position: {x: 1515.8104, y: 0.00011386107, z: 0}
-      rotation: {x: 0, y: 0, z: 0.7675629, w: 0.6409736}
+      position: {x: 1515.8103, y: -0.000009901414, z: 0}
+      rotation: {x: 0, y: 0, z: 0.767563, w: 0.6409736}
       length: 594.2173
       parentId: 14
     parts:
