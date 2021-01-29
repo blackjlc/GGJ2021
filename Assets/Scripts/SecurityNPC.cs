@@ -26,10 +26,13 @@ public class SecurityNPC : MonoBehaviour, IInteractable, IHittable {
 
     public GameObject Interact(PlayerData playerData) {
         if (!dead) {
+            if (transform.Find("TextBubble(Clone)") != null) {
+                Destroy(transform.Find("TextBubble(Clone)").gameObject);
+            }
             Debug.Log(gameObject.name + " says I am a Security.");
             GameObject go = Instantiate(textBubblePrefab, transform.position + textBubbleOffset, Quaternion.identity, transform);
             go.GetComponent<TextBubble>().Setup(gameObject.name + " says I am a Security.");
-            Destroy(go, 3f);
+            Destroy(go, 6f);
         }
         return gameObject;
     }

@@ -9,6 +9,7 @@ public class WanderMovement : MonoBehaviour
     public Vector3 origin;
     public float radius;
 
+    bool stopped;
     Vector3 wayPoint;
 
     private AnimationController anim;
@@ -22,14 +23,20 @@ public class WanderMovement : MonoBehaviour
     private void SetDestination()
     {
         Vector3 destination = new Vector3();
+        int count = 0;
         do
         {
+            count++;
             destination.x = transform.position.x + Random.Range(-range, range);
             destination.y = transform.position.y;
             destination.z = transform.position.z + Random.Range(-range, range);
-        } while (!IsInsideBoundary(destination));
+        } while (!IsInsideBoundary(destination) && count < 50);
 
         wayPoint = destination;
+    }
+
+    public void Stop() {
+        stopped = true;
     }
 
 
@@ -43,12 +50,13 @@ public class WanderMovement : MonoBehaviour
 
     void Update()
     {
-        Vector3 dir = (wayPoint - transform.position);
-        transform.position = Vector3.MoveTowards(transform.position, wayPoint, speed * Time.deltaTime);
-        anim.HandleAnimation(dir.x, 1);
-        if (Vector3.Distance(transform.position, wayPoint) < 0.1f)
-        {
-            SetDestination();
+        if (!stopped) {
+            Vector3 dir = (wayPoint - transform.position);
+            transform.position = Vector3.MoveTowards(transform.position, wayPoint, speed * Time.deltaTime);
+            anim.HandleAnimation(dir.x, 1);
+            if (Vector3.Distance(transform.position, wayPoint) < 0.1f) {
+                SetDestination();
+            }
         }
     }
 
