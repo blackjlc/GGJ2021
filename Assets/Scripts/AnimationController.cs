@@ -36,9 +36,15 @@ public class AnimationController : MonoBehaviour
     {
         if (speedX != 0)
             isRight = speedX > 0;
-        else
-            isRight = true;
         animator.SetFloat(moveXAniID, isRight ? 1f : -1f);
         animator.SetFloat(moveSpeedAniID, speed);
+    }
+
+    public void SetCarry(bool isCarry)
+    {
+        if (isCarry)
+            animator.SetTrigger(carryAniID);
+        else
+            animator.SetTrigger(moveAniID);
     }
 }

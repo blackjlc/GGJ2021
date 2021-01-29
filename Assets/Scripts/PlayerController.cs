@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public bool enableControl = true;
 
     [Header("PlayerData")]
-    public PlayerData playerData = new PlayerData();
+    public PlayerData playerData;
 
     [Header("Interact")]
     public float interactRange;
@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<AnimationController>();
         drunk = GetComponent<DrunkController>();
         effectTimer = effectTime;
+        playerData = new PlayerData(anim);
     }
 
     private void Update()
