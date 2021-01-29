@@ -6,7 +6,9 @@ public interface IPickupable
 {
     string GetName();
 
-    void Use();
+    bool IsThrowable();
+
+    void Use(GameObject gameObject);
 
     void Drop();
 

@@ -33,13 +33,17 @@ public class ItemInteractable : MonoBehaviour, IInteractable, IPickupable
         return name;
     }
 
-    public void Use() {
+    public void Use(GameObject target) {
         Destroy(gameObject);
     }
 
     public void Drop() {
         GetComponent<Collider>().enabled = true;
         following = false;
+    }
+
+    public bool IsThrowable() {
+        return false;
     }
     #endregion
 

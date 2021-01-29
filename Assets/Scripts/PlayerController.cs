@@ -27,6 +27,10 @@ public class PlayerController : MonoBehaviour
     public LayerMask interactableLayer;
     private IInteractable highlightedInteractable;
 
+    [Header("Throw")]
+    public float throwRange;
+    private GameObject throwTarget;
+
     [Header("Animation")]
     private AnimationController anim;
 
@@ -89,14 +93,26 @@ public class PlayerController : MonoBehaviour
                 HandleWalkEffect();
             }
         }
-        HighlightInteract();
+        if (playerData.item != null && playerData.item.IsThrowable()) {
+            HighlightThrow();
+        } else {
+            HighlightInteract();
+        }
     }
 
     private void HandleInteract(InputAction.CallbackContext context)
     {
-        GameObject go = highlightedInteractable?.Interact(playerData);
-        if (go != null && go.GetComponent<IPickupable>() != null)
-        {
+        GameObject go = null;
+        if (playerData.item != null && playerData.item.IsThrowable() && throwTarget != null) {
+            playerData.item.Use(throwTarget);
+            playerData.item = null;
+            throwTarget = null;
+            highlightedInteractable.ToggleHighlight();
+            highlightedInteractable = null;
+        } else {
+            go = highlightedInteractable?.Interact(playerData);
+        }
+        if (go != null && go.GetComponent<IPickupable>() != null){
             if (playerData.item != null)
             {
                 playerData.item.Drop();
@@ -116,6 +132,8 @@ public class PlayerController : MonoBehaviour
         else if (interactables.Length > 0)
         {
             IInteractable targetInteractable = interactables[0].GetComponent<IInteractable>();
+            GameObject targetObject = interactables[0].gameObject;
+
             if (targetInteractable != highlightedInteractable && targetInteractable != null && targetInteractable.CanInteract())
             {
                 if (highlightedInteractable != null)
@@ -124,6 +142,36 @@ public class PlayerController : MonoBehaviour
                 }
                 highlightedInteractable = targetInteractable;
                 highlightedInteractable.ToggleHighlight();
+            }
+        }
+    }
+
+    private void HighlightThrow() {
+        Collider[] interactables = Physics.OverlapSphere(transform.position, throwRange, interactableLayer);
+        if (interactables.Length <= 0 && highlightedInteractable != null) {
+            highlightedInteractable.ToggleHighlight();
+            highlightedInteractable = null;
+        }
+        if (interactables.Length <= 0 && throwTarget != null) {
+            throwTarget = null;
+        } else if (interactables.Length > 0) {
+            IInteractable targetInteractable = null;
+            GameObject targetObject = null;
+            foreach (Collider collider in interactables) {
+                if(collider.GetComponent<IHittable>() != null && !collider.GetComponent<IHittable>().IsDead()) {
+                    targetInteractable = collider.GetComponent<IInteractable>();
+                    targetObject = collider.gameObject;
+                }
+            }
+            if (targetInteractable != highlightedInteractable && targetInteractable != null && targetInteractable.CanInteract()) {
+                if (highlightedInteractable != null) {
+                    highlightedInteractable.ToggleHighlight();
+                }
+                highlightedInteractable = targetInteractable;
+                highlightedInteractable.ToggleHighlight();
+                if (playerData.item != null && playerData.item.IsThrowable()) {
+                    throwTarget = targetObject;
+                }
             }
         }
     }

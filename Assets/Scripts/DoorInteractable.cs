@@ -20,7 +20,7 @@ public class DoorInteractable : MonoBehaviour, IInteractable
         if ((locked && playerData.item != null && playerData.item.GetName() == keyName)) {//Locked Door
             IPickupable tmpItem = playerData.item;
             playerData.item = null;
-            tmpItem.Use();
+            tmpItem.Use(null);
             locked = false;
             opened = !opened;
         }else if (!locked) {//UnLocked Door
