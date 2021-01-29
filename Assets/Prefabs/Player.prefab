@@ -703,7 +703,7 @@ MonoBehaviour:
   drunkLevel: 6
   drunkCurvePointer: 0
   pointerSpeed: 0.001
-  drunkCurve:
+  drunkMoveCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -772,6 +772,77 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  drunkPPCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0013216882
+      value: 0.5001537
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5986025
+      value: 0.7145321
+      inSlope: 0.48942494
+      outSlope: 0.48942494
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.2051206
+      value: 0.4042298
+      inSlope: -0.4369232
+      outSlope: -0.4369232
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.9940395
+      value: 0.560898
+      inSlope: 1.9737556
+      outSlope: 1.9737556
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.091949224
+    - serializedVersion: 3
+      time: 3.1143177
+      value: 0.25165007
+      inSlope: 1.4860591
+      outSlope: 1.4860591
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.17619851
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 3.6842399
+      value: 0.7915817
+      inSlope: -0.6910825
+      outSlope: -0.6910825
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 4.9995456
+      value: 0.50115705
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  distortX: 1
+  distortY: 1
 --- !u!1 &6419455249842915146
 GameObject:
   m_ObjectHideFlags: 0
