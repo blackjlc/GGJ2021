@@ -16,7 +16,7 @@ TagManager:
   - Interactable
   - PostProcessing
   - Player
-  - 
+  - Ground
   - 
   - 
   - 
@@ -40,4 +40,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Car
+    uniqueID: 2372306495
     locked: 0

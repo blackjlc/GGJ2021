@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public int dashDurationFrame = 60;
     public float dashSpeed;
     private bool interruptInput = false;
+    public bool enableControl = true;
 
     [Header("PlayerData")]
     public PlayerData playerData = new PlayerData();
@@ -78,25 +79,26 @@ public class PlayerController : MonoBehaviour
         effectTimer = effectTime;
     }
 
-    private void Update()
-    {
-        if (!interruptInput)
-        {
-            Vector2 inputVector = controlMap.ReadValue<Vector2>();
-            Vector3 finalVector = new Vector3(inputVector.x, 0, inputVector.y);
-            finalVector = drunk.GetDrunkQuaternion() * finalVector;
-            anim.HandleAnimation(finalVector.x, finalVector.sqrMagnitude > 0 ? 1 : 0);
-            // Debug.Log(finalVector.ToString());
-            controller.Move(finalVector * Time.deltaTime * speed);
-            if (finalVector.magnitude != 0f)
+    private void Update() {
+        if (enableControl) {
+            if (!interruptInput)
             {
-                HandleWalkEffect();
+                Vector2 inputVector = controlMap.ReadValue<Vector2>();
+                Vector3 finalVector = new Vector3(inputVector.x, 0, inputVector.y);
+                finalVector = drunk.GetDrunkQuaternion() * finalVector;
+                anim.HandleAnimation(finalVector.x, finalVector.sqrMagnitude > 0 ? 1 : 0);
+                // Debug.Log(finalVector.ToString());
+                controller.Move(finalVector * Time.deltaTime * speed);
+                if (finalVector.magnitude != 0f)
+                {
+                    HandleWalkEffect();
+                }
+            } 
+            if (playerData.item != null && playerData.item.IsThrowable()) {
+                HighlightThrow();
+            } else {
+                HighlightInteract();
             }
-        }
-        if (playerData.item != null && playerData.item.IsThrowable()) {
-            HighlightThrow();
-        } else {
-            HighlightInteract();
         }
     }
 
