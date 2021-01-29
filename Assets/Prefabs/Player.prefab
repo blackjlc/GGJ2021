@@ -652,8 +652,8 @@ MonoBehaviour:
       m_Action: Control Map
       m_Flags: 8
   speed: 3.5
-  dashDurationFrame: 60
   dashSpeed: 6
+  dashDurationSec: 0.5
   playerData:
     target: {fileID: 0}
   interactRange: 1

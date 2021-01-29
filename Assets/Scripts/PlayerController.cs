@@ -15,8 +15,8 @@ public class PlayerController : MonoBehaviour
     private MyPlayerInput inputs;
     public InputAction controlMap;
     public float speed;
-    public int dashDurationFrame = 60;
     public float dashSpeed;
+    public float dashDurationSec = .5f;
     private bool interruptInput = false;
 
     [Header("PlayerData")]
@@ -93,9 +93,12 @@ public class PlayerController : MonoBehaviour
                 HandleWalkEffect();
             }
         }
-        if (playerData.item != null && playerData.item.IsThrowable()) {
+        if (playerData.item != null && playerData.item.IsThrowable())
+        {
             HighlightThrow();
-        } else {
+        }
+        else
+        {
             HighlightInteract();
         }
     }
@@ -103,16 +106,20 @@ public class PlayerController : MonoBehaviour
     private void HandleInteract(InputAction.CallbackContext context)
     {
         GameObject go = null;
-        if (playerData.item != null && playerData.item.IsThrowable() && throwTarget != null) {
+        if (playerData.item != null && playerData.item.IsThrowable() && throwTarget != null)
+        {
             playerData.item.Use(throwTarget);
             playerData.item = null;
             throwTarget = null;
             highlightedInteractable.ToggleHighlight();
             highlightedInteractable = null;
-        } else {
+        }
+        else
+        {
             go = highlightedInteractable?.Interact(playerData);
         }
-        if (go != null && go.GetComponent<IPickupable>() != null){
+        if (go != null && go.GetComponent<IPickupable>() != null)
+        {
             if (playerData.item != null)
             {
                 playerData.item.Drop();
@@ -146,30 +153,40 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void HighlightThrow() {
+    private void HighlightThrow()
+    {
         Collider[] interactables = Physics.OverlapSphere(transform.position, throwRange, interactableLayer);
-        if (interactables.Length <= 0 && highlightedInteractable != null) {
+        if (interactables.Length <= 0 && highlightedInteractable != null)
+        {
             highlightedInteractable.ToggleHighlight();
             highlightedInteractable = null;
         }
-        if (interactables.Length <= 0 && throwTarget != null) {
+        if (interactables.Length <= 0 && throwTarget != null)
+        {
             throwTarget = null;
-        } else if (interactables.Length > 0) {
+        }
+        else if (interactables.Length > 0)
+        {
             IInteractable targetInteractable = null;
             GameObject targetObject = null;
-            foreach (Collider collider in interactables) {
-                if(collider.GetComponent<IHittable>() != null && !collider.GetComponent<IHittable>().IsDead()) {
+            foreach (Collider collider in interactables)
+            {
+                if (collider.GetComponent<IHittable>() != null && !collider.GetComponent<IHittable>().IsDead())
+                {
                     targetInteractable = collider.GetComponent<IInteractable>();
                     targetObject = collider.gameObject;
                 }
             }
-            if (targetInteractable != highlightedInteractable && targetInteractable != null && targetInteractable.CanInteract()) {
-                if (highlightedInteractable != null) {
+            if (targetInteractable != highlightedInteractable && targetInteractable != null && targetInteractable.CanInteract())
+            {
+                if (highlightedInteractable != null)
+                {
                     highlightedInteractable.ToggleHighlight();
                 }
                 highlightedInteractable = targetInteractable;
                 highlightedInteractable.ToggleHighlight();
-                if (playerData.item != null && playerData.item.IsThrowable()) {
+                if (playerData.item != null && playerData.item.IsThrowable())
+                {
                     throwTarget = targetObject;
                 }
             }
@@ -207,11 +224,14 @@ public class PlayerController : MonoBehaviour
                 print("dash");
                 interruptInput = true;
                 Vector3 finalVector = new Vector3(firstMove.x, 0, firstMove.y);
-                await UniTaskAsyncEnumerable.EveryUpdate().Take(60).ForEachAsync(_ =>
+                float timer = dashDurationSec;
+                while (!token.IsCancellationRequested && timer > 0)
                 {
                     anim.HandleAnimation(finalVector.x, 2);
                     controller.Move(finalVector * Time.deltaTime * dashSpeed);
-                });
+                    await UniTask.NextFrame(cancellationToken: token);
+                    timer -= Time.deltaTime;
+                }
                 interruptInput = false;
             }
         }
