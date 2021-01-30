@@ -30,13 +30,10 @@ public class SecurityNPC : MonoBehaviour, IInteractable, IHittable
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
-    private void Start() {
-        gm.AddSecurity(this);
-    }
-
     private void Start()
     {
         anim = GetComponent<AnimationController>();
+        gm.AddSecurity(this);
     }
 
     #region <<Interact>>
