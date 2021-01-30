@@ -51,8 +51,15 @@ public class PlayerController : MonoBehaviour
     public GameObject textBubblePrefab;
     public Vector3 textBubbleOffset;
 
+    [Header("Puke")]
+    public LayerMask pukeLayer;
+    private bool onPuke = false;
+    private float pukeRoughness = .1f;  // 0:no friction, 1:full friction
+    private Vector3 SlipVector;
+
     private DrunkController drunk;
     private CharacterController controller;
+    private AudioController sound;
     private new Transform transform;
     private MoveEvent onMove;
     private CancellationTokenSource tokenSource;
@@ -86,6 +93,7 @@ public class PlayerController : MonoBehaviour
         transform = GetComponent<Transform>();
         anim = GetComponent<AnimationController>();
         drunk = GetComponent<DrunkController>();
+        sound = GetComponent<AudioController>();
         effectTimer = effectTime;
         playerData = new PlayerData(anim);
     }
@@ -95,8 +103,9 @@ public class PlayerController : MonoBehaviour
         //Ground Check
         Collider[] groundColliders = Physics.OverlapSphere(groundCheck.position, gcRange, groundLayer);
         float g = 0f;
-        if (groundColliders.Length == 0) {
-            Debug.Log("Not Grounded");
+        if (groundColliders.Length == 0)
+        {
+            //Debug.Log("Not Grounded");
             g = gravity;
         }
 
@@ -105,9 +114,20 @@ public class PlayerController : MonoBehaviour
             Vector2 inputVector = controlMap.ReadValue<Vector2>();
             Vector3 finalVector = enableControl ? new Vector3(inputVector.x, g, inputVector.y) : Vector3.zero;
             finalVector = drunk.GetDrunkQuaternion() * finalVector;
+
+            PukeCheck(finalVector);
+
             anim.Move(finalVector.x, finalVector.sqrMagnitude > 0 ? 1 : 0);
             //Debug.Log(finalVector.ToString());
-            controller.Move(finalVector * Time.deltaTime * speed);
+            if (!onPuke)
+            {
+                controller.Move(finalVector * speed * Time.deltaTime);
+            }
+            else
+            {
+                controller.Move((finalVector * pukeRoughness + SlipVector) * Time.deltaTime);
+            }
+
             if (finalVector.magnitude != 0f)
             {
                 HandleWalkEffect();
@@ -123,12 +143,35 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private Collider GetClosestCollider(Collider[] colliders) {
+    private void PukeCheck(Vector3 finalVector)
+    {
+        Collider[] pukeColliders = Physics.OverlapSphere(groundCheck.position, gcRange, pukeLayer, QueryTriggerInteraction.Collide);
+        if (!onPuke && pukeColliders.Length > 0)
+        {
+            print("On puke");
+            onPuke = true;
+            SlipVector = finalVector * speed;
+            sound.PlaySteppingSlime();
+        }
+        else if (onPuke && pukeColliders.Length == 0)
+        {
+            print("Not on puke");
+            onPuke = false;
+            pukeRoughness = 1;
+            SlipVector = Vector3.zero;
+            sound.Stop();
+        }
+    }
+
+    private Collider GetClosestCollider(Collider[] colliders)
+    {
         Collider result = colliders[0];
         float currDistance = Mathf.Infinity;
-        foreach(Collider collider in colliders) {
+        foreach (Collider collider in colliders)
+        {
             float distance = Vector3.Distance(transform.position, collider.transform.position);
-            if(distance < currDistance) {
+            if (distance < currDistance)
+            {
                 currDistance = distance;
                 result = collider;
             }
@@ -288,11 +331,6 @@ public class PlayerController : MonoBehaviour
                     timer -= Time.deltaTime;
                     await UniTask.NextFrame(cancellationToken: token);
                 }
-                // await UniTaskAsyncEnumerable.EveryUpdate().Take(60).ForEachAsync(_ =>
-                // {
-                //     anim.Move(finalVector.x, 2);
-                //     controller.Move(finalVector * Time.deltaTime * dashSpeed);
-                // });
                 interruptInput = false;
             }
         }
