@@ -16,14 +16,8 @@ public class Timer : MonoBehaviour
     public bool showMilliseconds;
     private float currentSeconds;
     private int timerDefault;
-    private GameManager gm;
-    private bool timeUp;
 
-    private void Awake() {
-        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        timeUp = false;
-    }
-
+    // Start is called before the first frame update
     void Start()
     {
      //   timeTxt.color = fontColor;
@@ -42,22 +36,22 @@ public class Timer : MonoBehaviour
     }
     void countDown()
     {
-        if (!timeUp) {
-            if ((currentSeconds -= Time.deltaTime) <= 0) {
-                TimeUp();
-                gm.GameOver("The taxi has left without you...", true);
-            } else {
-                if (showMilliseconds)
-                    timerText.text = TimeSpan.FromSeconds(currentSeconds).ToString(@"mm\:ss\:fff");
-                else
-                    timerText.text = TimeSpan.FromSeconds(currentSeconds).ToString(@"mm\:ss");
-            }
+        if ((currentSeconds -= Time.deltaTime) <= 0)
+        {
+            TimeUp();
         }
+        else
+        {
+            if (showMilliseconds)
+                timerText.text = TimeSpan.FromSeconds(currentSeconds).ToString(@"mm\:ss\:fff");
+            else
+                timerText.text = TimeSpan.FromSeconds(currentSeconds).ToString(@"mm\:ss");
+        }
+
     }
 
     private void TimeUp()
     {
-        timeUp = true;
         if (showMilliseconds)
             timerText.text = "00:00:000";
         else
