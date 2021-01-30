@@ -20901,31 +20901,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5877419491689645612, guid: 2533791d06abb334ab3f9bc3aacc2993, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.59
+      value: -3.572
       objectReference: {fileID: 0}
     - target: {fileID: 5877419491689645612, guid: 2533791d06abb334ab3f9bc3aacc2993, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.377
+      value: 1.941
       objectReference: {fileID: 0}
     - target: {fileID: 5877419491689645612, guid: 2533791d06abb334ab3f9bc3aacc2993, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -20.743
+      value: -19.576
       objectReference: {fileID: 0}
     - target: {fileID: 5877419491689645612, guid: 2533791d06abb334ab3f9bc3aacc2993, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.96816796
+      value: -0.9664027
       objectReference: {fileID: 0}
     - target: {fileID: 5877419491689645612, guid: 2533791d06abb334ab3f9bc3aacc2993, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.25030148
+      value: -0.25184843
       objectReference: {fileID: 0}
     - target: {fileID: 5877419491689645612, guid: 2533791d06abb334ab3f9bc3aacc2993, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000008329334
+      value: -0.050227758
       objectReference: {fileID: 0}
     - target: {fileID: 5877419491689645612, guid: 2533791d06abb334ab3f9bc3aacc2993, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000021533912
+      value: 0.010741936
       objectReference: {fileID: 0}
     - target: {fileID: 5877419491689645612, guid: 2533791d06abb334ab3f9bc3aacc2993, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -21021,6 +21021,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1744666788}
     m_Modifications:
+    - target: {fileID: 2688610452380881777, guid: 4069bfe3f427f4448bedb86403be04e1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.84
+      objectReference: {fileID: 0}
     - target: {fileID: 3376785117829274013, guid: 4069bfe3f427f4448bedb86403be04e1, type: 3}
       propertyPath: m_Name
       value: RoomDoor (2)
@@ -21068,6 +21072,14 @@ PrefabInstance:
     - target: {fileID: 3376785117829274014, guid: 4069bfe3f427f4448bedb86403be04e1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997867521189840051, guid: 4069bfe3f427f4448bedb86403be04e1, type: 3}
+      propertyPath: m_Range
+      value: 1.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997867521189840051, guid: 4069bfe3f427f4448bedb86403be04e1, type: 3}
+      propertyPath: m_Intensity
+      value: 1.33
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4069bfe3f427f4448bedb86403be04e1, type: 3}
