@@ -23,6 +23,11 @@ public class SecurityNPC : MonoBehaviour, IInteractable, IHittable
 
     private AnimationController anim;
 
+    private void Start()
+    {
+        anim = GetComponent<AnimationController>();
+    }
+
     #region <<Interact>>
     public bool CanInteract()
     {
