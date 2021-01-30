@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 6146132812742322991}
   - component: {fileID: 4035267883347443446}
   - component: {fileID: 6806038800675684347}
+  - component: {fileID: -2790791445332064149}
   m_Layer: 8
   m_Name: DJ
   m_TagString: Untagged
@@ -218,6 +219,9 @@ MonoBehaviour:
   textBubbleOffset: {x: 0.3, y: 0.7, z: 0}
   dialogue: Hi, how are you?
   isFriend: 0
+  darkMaterial: {fileID: 0}
+  brightMaterial: {fileID: 0}
+  renderer: []
 --- !u!114 &6146132812742322991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,6 +303,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &-2790791445332064149
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847199110945833620}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &1857404247004807589
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2912086475673581961}
   - component: {fileID: 1541795320720652576}
   - component: {fileID: 3810264390725587612}
+  - component: {fileID: -3996293326315373198}
   m_Layer: 8
   m_Name: SecurityNPC
   m_TagString: Untagged
@@ -211,6 +212,17 @@ MonoBehaviour:
   music1: {fileID: 0}
   music2: {fileID: 0}
   SteppingOntheSlime: {fileID: 0}
+--- !u!210 &-3996293326315373198
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6489629569235373887}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!95 &3606032277688870628
 Animator:
   serializedVersion: 3

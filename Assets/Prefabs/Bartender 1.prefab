@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7993515636785294610}
   - component: {fileID: 262890922067998923}
   - component: {fileID: 286504597249364220}
+  - component: {fileID: 7119888676762519173}
   m_Layer: 8
   m_Name: Bartender 1
   m_TagString: Untagged
@@ -52,6 +53,9 @@ MonoBehaviour:
   textBubbleOffset: {x: 0.3, y: 0.7, z: 0}
   dialogue: Hi, how are you?
   isFriend: 0
+  darkMaterial: {fileID: 0}
+  brightMaterial: {fileID: 0}
+  renderer: []
 --- !u!114 &7993515636785294610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,6 +99,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1151024180320377137}
+--- !u!210 &7119888676762519173
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2452015288882218153}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1001 &3681255329098649258
 PrefabInstance:
   m_ObjectHideFlags: 0

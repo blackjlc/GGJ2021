@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8160294893188770268}
   - component: {fileID: 8160294893188770275}
+  - component: {fileID: -3639284660257495252}
   m_Layer: 0
   m_Name: DrunkMan
   m_TagString: Untagged
@@ -82,3 +83,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &-3639284660257495252
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8160294893188770274}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0

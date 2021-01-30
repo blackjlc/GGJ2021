@@ -681,6 +681,7 @@ GameObject:
   - component: {fileID: 6491737373545659087}
   - component: {fileID: 2779358856177045744}
   - component: {fileID: 8004056205676379556}
+  - component: {fileID: 3518634382748190084}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -1117,6 +1118,17 @@ MonoBehaviour:
   music1: {fileID: 0}
   music2: {fileID: 0}
   SteppingOntheSlime: {fileID: 8300000, guid: 16b277b76dacff6429623fac463821a6, type: 3}
+--- !u!210 &3518634382748190084
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6419455249738941678}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &6419455249842915146
 GameObject:
   m_ObjectHideFlags: 0
