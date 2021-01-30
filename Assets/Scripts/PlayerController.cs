@@ -223,7 +223,18 @@ public class PlayerController : MonoBehaviour
         while (!token.IsCancellationRequested)
         {
             Vector2 firstMove = await onMove.OnInvokeAsync<Vector2>(token);
-            Vector2 secondMove = await onMove.OnInvokeAsync<Vector2>(token);
+
+            Vector2 secondMove;
+            try
+            {
+                secondMove = await onMove.OnInvokeAsync<Vector2>(token).Timeout(TimeSpan.FromSeconds(.5f),
+                                DelayType.Realtime, PlayerLoopTiming.FixedUpdate);
+            }
+            catch (System.Exception)
+            {
+                continue;
+            }
+
             if (firstMove == secondMove)
             {
                 print("dash");
