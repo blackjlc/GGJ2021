@@ -637,6 +637,10 @@ MonoBehaviour:
   totalFriendNum: 4
   friendsName: []
   startTime: 100
+  startMusic: 1
+  drunk: {fileID: 0}
+  DJ: {fileID: 0}
+  ambient: {fileID: 0}
 --- !u!1 &403474600
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,7 +798,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8223372150766094142, guid: 5a669e3343ecb644fb0897bc22b2e6a0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a669e3343ecb644fb0897bc22b2e6a0, type: 3}
@@ -1047,7 +1051,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6489629569235373887, guid: a3e4c2a460e5e7842977ab2c4068b530, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6489629570593632289, guid: a3e4c2a460e5e7842977ab2c4068b530, type: 3}
       propertyPath: m_IsActive
@@ -1929,6 +1933,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vomition
       objectReference: {fileID: 0}
+    - target: {fileID: 559072668001516960, guid: 585a0e439799b1c4d9c4c3086a367440, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 559072668001516989, guid: 585a0e439799b1c4d9c4c3086a367440, type: 3}
       propertyPath: m_RootOrder
       value: 20
@@ -1939,7 +1947,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 559072668001516989, guid: 585a0e439799b1c4d9c4c3086a367440, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.519
+      value: -0.82
       objectReference: {fileID: 0}
     - target: {fileID: 559072668001516989, guid: 585a0e439799b1c4d9c4c3086a367440, type: 3}
       propertyPath: m_LocalPosition.z

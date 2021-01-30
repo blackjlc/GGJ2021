@@ -15,26 +15,46 @@ public class DoorInteractable : MonoBehaviour, IInteractable
     public string keyName;
     public bool locked;
 
+    private AudioController sound;
+
+    private void Start()
+    {
+        sound = GetComponent<AudioController>();
+    }
+
     public GameObject Interact(PlayerData playerData)
     {
-        if ((locked && playerData.item != null && playerData.item.GetName() == keyName)) {//Locked Door
+        if ((locked && playerData.item != null && playerData.item.GetName() == keyName))
+        {//Locked Door
             IPickupable tmpItem = playerData.item;
             playerData.item = null;
             tmpItem.Use(null);
             locked = false;
             opened = !opened;
-        }else if (!locked) {//UnLocked Door
+
+            sound.PlayOpenLock();
+            sound.PlayDoorOpen();
+        }
+        else if (!locked)
+        {//UnLocked Door
             opened = !opened;
+            sound.PlayDoorOpen();
+        }
+        else // Unsuccess attempt to open locked door
+        {
+            sound.PlayDoorIsLocked();
         }
         return gameObject;
     }
 
-    public bool CanInteract() {
+    public bool CanInteract()
+    {
         //return !locked;
         return true;
     }
 
-    public void ToggleHighlight() {
+    public void ToggleHighlight()
+    {
         //TODO
         Debug.Log("Toggle Highlight for " + gameObject.name);
     }
