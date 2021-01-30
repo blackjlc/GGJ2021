@@ -36,7 +36,7 @@ public class AnimationController : MonoBehaviour
     /// </summary>
     /// <param name="speedX"></param>
     /// <param name="speed">0 for idle. 1 for walk. 2 for dash</param>
-    public void HandleAnimation(float speedX, float speed)
+    public void Move(float speedX, float speed)
     {
         if (speedX != 0)
             isRight = speedX > 0;

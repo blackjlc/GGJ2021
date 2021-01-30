@@ -35,8 +35,10 @@ public class WanderMovement : MonoBehaviour
         wayPoint = destination;
     }
 
-    public void Stop() {
+    public void Stop()
+    {
         stopped = true;
+        anim.Move(0, 0);
     }
 
 
@@ -50,11 +52,13 @@ public class WanderMovement : MonoBehaviour
 
     void Update()
     {
-        if (!stopped) {
+        if (!stopped)
+        {
             Vector3 dir = (wayPoint - transform.position);
             transform.position = Vector3.MoveTowards(transform.position, wayPoint, speed * Time.deltaTime);
-            anim.HandleAnimation(dir.x, 1);
-            if (Vector3.Distance(transform.position, wayPoint) < 0.1f) {
+            anim.Move(dir.x, 1);
+            if (Vector3.Distance(transform.position, wayPoint) < 0.1f)
+            {
                 SetDestination();
             }
         }
