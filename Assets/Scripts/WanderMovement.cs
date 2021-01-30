@@ -56,7 +56,7 @@ public class WanderMovement : MonoBehaviour
         {
             Vector3 dir = (wayPoint - transform.position);
             transform.position = Vector3.MoveTowards(transform.position, wayPoint, speed * Time.deltaTime);
-            anim.Move(dir.x, 1);
+            anim?.Move(dir.x, 1);
             if (Vector3.Distance(transform.position, wayPoint) < 0.1f)
             {
                 SetDestination();

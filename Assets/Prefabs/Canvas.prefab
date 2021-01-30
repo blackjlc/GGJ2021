@@ -79,8 +79,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 124, y: -104}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 124, y: -142.8}
+  m_SizeDelta: {x: 100, y: 177.57947}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6694686280977811749
 CanvasRenderer:
@@ -154,8 +154,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -0.000061035156, y: 12.3}
+  m_SizeDelta: {x: 100, y: 161.56699}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4192179041658397543
 CanvasRenderer:
@@ -229,8 +229,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 124, y: 347}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 124, y: 421.1}
+  m_SizeDelta: {x: 100, y: 248.10608}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1912655563435216091
 CanvasRenderer:
@@ -304,8 +304,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 894.98016, y: 133.29912}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 894.98016, y: 146.3}
+  m_SizeDelta: {x: 100, y: 153.92728}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6018798330794037093
 CanvasRenderer:
@@ -1464,9 +1464,13 @@ MonoBehaviour:
   totalFriendNum: 3
   friendsName:
   - Peter
-  - Mary
+  - Steven
   - John
   startTime: 120
+  startMusic: 1
+  drunk: {fileID: 0}
+  DJ: {fileID: 0}
+  ambient: {fileID: 0}
 --- !u!114 &3128800629588808214
 MonoBehaviour:
   m_ObjectHideFlags: 0
