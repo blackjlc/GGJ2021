@@ -10,7 +10,8 @@ using UnityEngine.Events;
 using Cysharp.Threading.Tasks.Linq;
 using Random = UnityEngine.Random;
 
-public class PlayerController : MonoBehaviour, IHittable {
+public class PlayerController : MonoBehaviour, IHittable
+{
     private MyPlayerInput inputs;
     public InputAction controlMap;
     public float speed;
@@ -64,7 +65,7 @@ public class PlayerController : MonoBehaviour, IHittable {
     private CancellationTokenSource tokenSource;
     private GameManager gm;
     private bool dead;
-    
+
     void OnEnable()
     {
         inputs = new MyPlayerInput();
@@ -100,6 +101,8 @@ public class PlayerController : MonoBehaviour, IHittable {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
+
+
     private void Update()
     {
         //Ground Check
@@ -134,6 +137,8 @@ public class PlayerController : MonoBehaviour, IHittable {
             {
                 HandleWalkEffect();
             }
+            else
+                sound.Stop();
         }
         if (playerData.item != null && playerData.item.IsThrowable())
         {
@@ -150,14 +155,14 @@ public class PlayerController : MonoBehaviour, IHittable {
         Collider[] pukeColliders = Physics.OverlapSphere(groundCheck.position, gcRange, pukeLayer, QueryTriggerInteraction.Collide);
         if (!onPuke && pukeColliders.Length > 0)
         {
-            print("On puke");
+            print("On puke enter");
             onPuke = true;
             SlipVector = finalVector * speed;
             sound.PlaySteppingSlime();
         }
         else if (onPuke && pukeColliders.Length == 0)
         {
-            print("Not on puke");
+            print("on puke exit");
             onPuke = false;
             pukeRoughness = 1;
             SlipVector = Vector3.zero;
@@ -291,6 +296,7 @@ public class PlayerController : MonoBehaviour, IHittable {
             GameObject effect = Instantiate(walkEffect, pos, Quaternion.identity);
             Destroy(effect, .6f);
             effectTimer = effectTime;
+            sound.PlayFootStep();
         }
         else
         {
@@ -323,6 +329,7 @@ public class PlayerController : MonoBehaviour, IHittable {
             if (firstMove == secondMove)
             {
                 print("dash");
+                sound.PlayDash();
                 interruptInput = true;
                 Vector3 finalVector = enableControl ? new Vector3(firstMove.x, 0, firstMove.y) : Vector3.zero;
                 float timer = dashDurationSec;
@@ -343,12 +350,14 @@ public class PlayerController : MonoBehaviour, IHittable {
         tokenSource.Dispose();
     }
 
-    public void Hit() {
+    public void Hit()
+    {
         dead = true;
         gm.GameOver("You got knocked out.", false);
     }
 
-    public bool IsDead() {
+    public bool IsDead()
+    {
         return dead;
     }
 }

@@ -22,6 +22,7 @@ public class SecurityNPC : MonoBehaviour, IInteractable, IHittable
     public bool dead;
 
     private AnimationController anim;
+    private AudioController sound;
     private GameManager gm;
 
     private void Awake()
@@ -32,6 +33,7 @@ public class SecurityNPC : MonoBehaviour, IInteractable, IHittable
 
     private void Start()
     {
+        sound = GetComponent<AudioController>();
         anim = GetComponent<AnimationController>();
         gm.AddSecurity(this);
     }
@@ -85,6 +87,7 @@ public class SecurityNPC : MonoBehaviour, IInteractable, IHittable
 
     public void Hit()
     {
+        sound.PlayBottleCrash();
         dead = true;
         anim.KnockedOut();
         gm.TriggerAllSecurity();
