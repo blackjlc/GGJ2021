@@ -1106,7 +1106,7 @@ MonoBehaviour:
   PickUPItem: {fileID: 0}
   PutDownItem: {fileID: 0}
   FootStep: {fileID: 0}
-  Dash: {fileID: 0}
+  Dash: {fileID: 8300000, guid: b6970ea6ec04d934487610f3d8a7c7b8, type: 3}
   DoorIsLocked: {fileID: 0}
   DoorOpen: {fileID: 0}
   OpenLock: {fileID: 0}

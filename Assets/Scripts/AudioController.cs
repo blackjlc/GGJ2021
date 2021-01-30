@@ -31,6 +31,8 @@ public class AudioController : MonoBehaviour
     {
         // sound.clip = SteppingOntheSlime;
         // sound.loop = true;
+        sound.volume = .439f;
+        sound.pitch = 1;
         sound.PlayOneShot(SteppingOntheSlime);
     }
     public void PlayBottleCrash()
@@ -62,6 +64,8 @@ public class AudioController : MonoBehaviour
     {
         sound.clip = Dash;
         sound.loop = false;
+        sound.volume = .125f;
+        sound.pitch = .8f;
         sound.Play();
     }
     public void PlayDoorIsLocked()

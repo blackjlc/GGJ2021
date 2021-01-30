@@ -10,7 +10,8 @@ using UnityEngine.Events;
 using Cysharp.Threading.Tasks.Linq;
 using Random = UnityEngine.Random;
 
-public class PlayerController : MonoBehaviour, IHittable {
+public class PlayerController : MonoBehaviour, IHittable
+{
     private MyPlayerInput inputs;
     public InputAction controlMap;
     public float speed;
@@ -64,7 +65,7 @@ public class PlayerController : MonoBehaviour, IHittable {
     private CancellationTokenSource tokenSource;
     private GameManager gm;
     private bool dead;
-    
+
     void OnEnable()
     {
         inputs = new MyPlayerInput();
@@ -328,6 +329,7 @@ public class PlayerController : MonoBehaviour, IHittable {
             if (firstMove == secondMove)
             {
                 print("dash");
+                sound.PlayDash();
                 interruptInput = true;
                 Vector3 finalVector = enableControl ? new Vector3(firstMove.x, 0, firstMove.y) : Vector3.zero;
                 float timer = dashDurationSec;
@@ -348,12 +350,14 @@ public class PlayerController : MonoBehaviour, IHittable {
         tokenSource.Dispose();
     }
 
-    public void Hit() {
+    public void Hit()
+    {
         dead = true;
         gm.GameOver("You got knocked out.", false);
     }
 
-    public bool IsDead() {
+    public bool IsDead()
+    {
         return dead;
     }
 }

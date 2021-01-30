@@ -634,6 +634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39fbd73a080878488b25811eb08459a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ch: {fileID: 0}
   totalFriendNum: 4
   friendsName: []
   startTime: 100
