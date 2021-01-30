@@ -137,8 +137,8 @@ public class PlayerController : MonoBehaviour, IHittable
             {
                 HandleWalkEffect();
             }
-            else
-                sound.Stop();
+            // else
+            //     sound.Stop();
         }
         if (playerData.item != null && playerData.item.IsThrowable())
         {

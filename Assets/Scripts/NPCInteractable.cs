@@ -10,6 +10,17 @@ public class NPCInteractable : MonoBehaviour, IInteractable
     public string dialogue;
     public bool isFriend;
 
+    [Header("Materials")]
+    public Material darkMaterial;
+    public Material brightMaterial;
+    private bool highlight;
+    [SerializeField] private SpriteRenderer[] renderer;
+
+    private void Start()
+    {
+        renderer = transform.GetChild(0).GetComponentsInChildren<SpriteRenderer>();
+    }
+
     public bool CanInteract()
     {
         return true;
@@ -44,6 +55,21 @@ public class NPCInteractable : MonoBehaviour, IInteractable
     {
         //TODO
         Debug.Log("Toggle Highlight for " + gameObject.name);
+        highlight = !highlight;
+        if (highlight)
+        {
+            for (int i = 0; i < renderer.Length; i++)
+            {
+                renderer[i].material.SetFloat("_OutlineOpacity", 1);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < renderer.Length; i++)
+            {
+                renderer[i].material.SetFloat("_OutlineOpacity", 0);
+            }
+        }
     }
 
 }
