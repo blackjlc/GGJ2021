@@ -41,6 +41,10 @@ public class PlayerController : MonoBehaviour
     public Vector3 effectOffset;
     private float effectTimer;
 
+    [Header("TextBubble")]
+    public GameObject textBubblePrefab;
+    public Vector3 textBubbleOffset;
+
     private DrunkController drunk;
     private CharacterController controller;
     private new Transform transform;
@@ -82,29 +86,26 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (enableControl)
+        if (!interruptInput)
         {
-            if (!interruptInput)
+            Vector2 inputVector = controlMap.ReadValue<Vector2>();
+            Vector3 finalVector = enableControl ? new Vector3(inputVector.x, 0, inputVector.y) : Vector3.zero;
+            finalVector = drunk.GetDrunkQuaternion() * finalVector;
+            anim.HandleAnimation(finalVector.x, finalVector.sqrMagnitude > 0 ? 1 : 0);
+            // Debug.Log(finalVector.ToString());
+            controller.Move(finalVector * Time.deltaTime * speed);
+            if (finalVector.magnitude != 0f)
             {
-                Vector2 inputVector = controlMap.ReadValue<Vector2>();
-                Vector3 finalVector = new Vector3(inputVector.x, 0, inputVector.y);
-                finalVector = drunk.GetDrunkQuaternion() * finalVector;
-                anim.HandleAnimation(finalVector.x, finalVector.sqrMagnitude > 0 ? 1 : 0);
-                // Debug.Log(finalVector.ToString());
-                controller.Move(finalVector * Time.deltaTime * speed);
-                if (finalVector.magnitude != 0f)
-                {
-                    HandleWalkEffect();
-                }
+                HandleWalkEffect();
             }
-            if (playerData.item != null && playerData.item.IsThrowable())
-            {
-                HighlightThrow();
-            }
-            else
-            {
-                HighlightInteract();
-            }
+        }
+        if (playerData.item != null && playerData.item.IsThrowable())
+        {
+            HighlightThrow();
+        }
+        else
+        {
+            HighlightInteract();
         }
     }
 
@@ -196,6 +197,15 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ShowTextBubble(string text) {
+        if (transform.Find("TextBubble(Clone)") != null) {
+            Destroy(transform.Find("TextBubble(Clone)").gameObject);
+        }
+        GameObject go = Instantiate(textBubblePrefab, transform.position + textBubbleOffset, Quaternion.identity, transform);
+        go.GetComponent<TextBubble>().Setup(text);
+        Destroy(go, 6f);
     }
 
     private void HandleWalkEffect()

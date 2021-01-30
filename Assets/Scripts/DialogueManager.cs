@@ -7,6 +7,7 @@ public class DialogueManager : MonoBehaviour{
 
     public CanvasGroup blackScreen;
     public CanvasGroup cinematic;
+    public GameObject blackBackGround;
     public Text blackScreenText;
     public Text friendText;
     public bool isBlackout;
@@ -24,17 +25,31 @@ public class DialogueManager : MonoBehaviour{
         friendText.text = stringBuffer;
     }
 
+    IEnumerator BlackScreenPopText(string text) {
+        string stringBuffer = "";
+        foreach (char letter in text.ToCharArray()) {
+            stringBuffer += letter;
+            blackScreenText.text = stringBuffer;
+            yield return new WaitForSeconds(0.07f);
+        }
+    }
+
     public void DisablePlayer() {
         player.GetComponent<PlayerController>().enableControl = false;
     }
 
     public void ShowBlackScreen(string text) {
-        blackScreenText.text = text;
+        //friendText.gameObject.SetActive(false);
         isBlackout = true;
+        StartCoroutine(BlackScreenPopText(text));
     }
 
     public void HideBlackScreen() {
         isBlackout = false;
+    }
+
+    public void ShowFriendCounter() {
+        friendText.gameObject.SetActive(true);
     }
 
     public void StartDialogue(){
