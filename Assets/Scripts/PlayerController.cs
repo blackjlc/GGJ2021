@@ -100,6 +100,8 @@ public class PlayerController : MonoBehaviour, IHittable {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
+
+
     private void Update()
     {
         //Ground Check
@@ -134,6 +136,8 @@ public class PlayerController : MonoBehaviour, IHittable {
             {
                 HandleWalkEffect();
             }
+            else
+                sound.Stop();
         }
         if (playerData.item != null && playerData.item.IsThrowable())
         {
@@ -150,14 +154,14 @@ public class PlayerController : MonoBehaviour, IHittable {
         Collider[] pukeColliders = Physics.OverlapSphere(groundCheck.position, gcRange, pukeLayer, QueryTriggerInteraction.Collide);
         if (!onPuke && pukeColliders.Length > 0)
         {
-            print("On puke");
+            print("On puke enter");
             onPuke = true;
             SlipVector = finalVector * speed;
             sound.PlaySteppingSlime();
         }
         else if (onPuke && pukeColliders.Length == 0)
         {
-            print("Not on puke");
+            print("on puke exit");
             onPuke = false;
             pukeRoughness = 1;
             SlipVector = Vector3.zero;
@@ -291,6 +295,7 @@ public class PlayerController : MonoBehaviour, IHittable {
             GameObject effect = Instantiate(walkEffect, pos, Quaternion.identity);
             Destroy(effect, .6f);
             effectTimer = effectTime;
+            sound.PlayFootStep();
         }
         else
         {

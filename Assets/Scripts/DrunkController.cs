@@ -38,15 +38,10 @@ public class DrunkController : MonoBehaviour
         StartDrunkVFX(token).Forget();
     }
 
-    // private async UniTaskVoid UpdateDrunkQuaternion(CancellationToken token)
-    // {
-    //     while (!token.IsCancellationRequested)
-    //     {
-    //         float newAngle = 90f / 10f * drunkLevel;
-    //         drunkQuaternion = Quaternion.AngleAxis(Random.Range(-newAngle, newAngle), Vector3.up);
-    //         await UniTask.Delay(changeMoveDirPeriodms);
-    //     }
-    // }
+    public void Drink()
+    {
+        UpdateDrunkLevel(drunkLevel + 1);
+    }
 
     public void UpdateDrunkLevel(int drunkLevel)
     {
