@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SecurityNPC : MonoBehaviour, IInteractable, IHittable {
+public class SecurityNPC : MonoBehaviour, IInteractable, IHittable
+{
 
     //NPC
     public string name;
@@ -19,14 +20,20 @@ public class SecurityNPC : MonoBehaviour, IInteractable, IHittable {
     public bool angry;
     public bool dead;
 
+    private AnimationController anim;
+
     #region <<Interact>>
-    public bool CanInteract() {
+    public bool CanInteract()
+    {
         return true;
     }
 
-    public GameObject Interact(PlayerData playerData) {
-        if (!dead) {
-            if (transform.Find("TextBubble(Clone)") != null) {
+    public GameObject Interact(PlayerData playerData)
+    {
+        if (!dead)
+        {
+            if (transform.Find("TextBubble(Clone)") != null)
+            {
                 Destroy(transform.Find("TextBubble(Clone)").gameObject);
             }
             Debug.Log(gameObject.name + " says I am a Security.");
@@ -37,41 +44,59 @@ public class SecurityNPC : MonoBehaviour, IInteractable, IHittable {
         return gameObject;
     }
 
-    public void ToggleHighlight() {
+    public void ToggleHighlight()
+    {
         //TODO
         Debug.Log("Toggle Highlight for " + gameObject.name);
     }
     #endregion
 
     #region <<Hittable>>
-    void HandleLook() {
+    void HandleLook()
+    {
         Collider[] colliders = Physics.OverlapSphere(transform.position, lookRange, targetLayer);
         Debug.Log("Security sees " + colliders.Length + " targets");
-        if (colliders.Length > 0) {
+        if (colliders.Length > 0)
+        {
             targetTransform = colliders[0].transform;
         }
     }
 
-    void HandleMove() {
+    void HandleMove()
+    {
+        Vector3 dir = targetTransform.position - transform.position;
         transform.position = Vector3.MoveTowards(transform.position, targetTransform.position, moveSpeed * Time.deltaTime);
+        anim.Move(dir.x, 1);
     }
 
-    public void Hit() {
+    public void Hit()
+    {
         dead = true;
+        anim.KnockedOut();
+
     }
 
-    public bool IsDead() {
+    public bool IsDead()
+    {
         return dead;
     }
     #endregion
 
-    void Update() {
-        if (!dead && angry) {
-            if (targetTransform == null) {
+    void Update()
+    {
+        if (!dead && angry)
+        {
+            if (targetTransform == null)
+            {
                 HandleLook();
-            } else if (Vector3.Distance(transform.position, targetTransform.position) < meleeRange) {
+            }
+            else if (Vector3.Distance(transform.position, targetTransform.position) < meleeRange)
+            {
+                anim.Attack();
                 targetTransform.gameObject.GetComponent<IHittable>()?.Hit();
-            } else {
+            }
+            else
+            {
                 HandleMove();
             }
         }

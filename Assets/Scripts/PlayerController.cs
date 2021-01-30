@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
             Vector2 inputVector = controlMap.ReadValue<Vector2>();
             Vector3 finalVector = enableControl ? new Vector3(inputVector.x, 0, inputVector.y) : Vector3.zero;
             finalVector = drunk.GetDrunkQuaternion() * finalVector;
-            anim.HandleAnimation(finalVector.x, finalVector.sqrMagnitude > 0 ? 1 : 0);
+            anim.Move(finalVector.x, finalVector.sqrMagnitude > 0 ? 1 : 0);
             // Debug.Log(finalVector.ToString());
             controller.Move(finalVector * Time.deltaTime * speed);
             if (finalVector.magnitude != 0f)
@@ -199,8 +199,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ShowTextBubble(string text) {
-        if (transform.Find("TextBubble(Clone)") != null) {
+    public void ShowTextBubble(string text)
+    {
+        if (transform.Find("TextBubble(Clone)") != null)
+        {
             Destroy(transform.Find("TextBubble(Clone)").gameObject);
         }
         GameObject go = Instantiate(textBubblePrefab, transform.position + textBubbleOffset, Quaternion.identity, transform);
@@ -253,14 +255,14 @@ public class PlayerController : MonoBehaviour
                 float timer = dashDurationSec;
                 while (!token.IsCancellationRequested && timer > 0)
                 {
-                    anim.HandleAnimation(finalVector.x, 2);
+                    anim.Move(finalVector.x, 2);
                     controller.Move(finalVector * Time.deltaTime * dashSpeed);
                     timer -= Time.deltaTime;
                     await UniTask.NextFrame(cancellationToken: token);
                 }
                 // await UniTaskAsyncEnumerable.EveryUpdate().Take(60).ForEachAsync(_ =>
                 // {
-                //     anim.HandleAnimation(finalVector.x, 2);
+                //     anim.Move(finalVector.x, 2);
                 //     controller.Move(finalVector * Time.deltaTime * dashSpeed);
                 // });
                 interruptInput = false;

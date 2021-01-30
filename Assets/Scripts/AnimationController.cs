@@ -15,6 +15,8 @@ public class AnimationController : MonoBehaviour
     private int carryAniID;
     private int pickKeyAniID;
     private int danceAniID;
+    private int knockedOutAniID;
+    private int attackAniID;
 
     private void Awake()
     {
@@ -25,6 +27,8 @@ public class AnimationController : MonoBehaviour
         carryAniID = Animator.StringToHash("carry");
         pickKeyAniID = Animator.StringToHash("pick_key");
         danceAniID = Animator.StringToHash("dance");
+        knockedOutAniID = Animator.StringToHash("knocked");
+        attackAniID = Animator.StringToHash("attack");
     }
 
     /// <summary>
@@ -32,7 +36,7 @@ public class AnimationController : MonoBehaviour
     /// </summary>
     /// <param name="speedX"></param>
     /// <param name="speed">0 for idle. 1 for walk. 2 for dash</param>
-    public void HandleAnimation(float speedX, float speed)
+    public void Move(float speedX, float speed)
     {
         if (speedX != 0)
             isRight = speedX > 0;
@@ -46,5 +50,15 @@ public class AnimationController : MonoBehaviour
             animator.SetTrigger(carryAniID);
         else
             animator.SetTrigger(moveAniID);
+    }
+
+    public void KnockedOut()
+    {
+        animator.SetTrigger(knockedOutAniID);
+    }
+
+    public void Attack()
+    {
+        animator.SetTrigger(attackAniID);
     }
 }
