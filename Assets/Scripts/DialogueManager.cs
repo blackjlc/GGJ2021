@@ -15,7 +15,7 @@ public class DialogueManager : MonoBehaviour{
     public bool isCinematic;
     public float fadeSpeed;
 
-    GameObject player;
+    PlayerController player;
 	Queue<DialogueEvent> eventQueue = new Queue<DialogueEvent>();
 
     public void UpdateFriendText(List<string> friendList) {
@@ -28,6 +28,7 @@ public class DialogueManager : MonoBehaviour{
 
     IEnumerator BlackScreenPopText(string text) {
         string stringBuffer = "";
+        blackScreenText.text = stringBuffer;
         foreach (char letter in text.ToCharArray()) {
             stringBuffer += letter;
             blackScreenText.text = stringBuffer;
@@ -36,7 +37,7 @@ public class DialogueManager : MonoBehaviour{
     }
 
     public void DisablePlayer() {
-        player.GetComponent<PlayerController>().enableControl = false;
+        player.enableControl = false;
     }
 
     public void ShowBlackScreen(string text) {
@@ -59,7 +60,7 @@ public class DialogueManager : MonoBehaviour{
     }
 	
 	void Awake(){
-        //player = GameObject.Find("Player");
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
 
     }
 

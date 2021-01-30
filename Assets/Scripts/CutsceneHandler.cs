@@ -62,15 +62,15 @@ public class CutsceneHandler : MonoBehaviour
         dm.HideBlackScreen();
         GameObject.Find("Taxi").GetComponent<ExitInteractable>().drive = true;
         yield return new WaitForSeconds(2f);
-        dm.ShowBlackScreen("msg");
+        dm.ShowBlackScreen(msg);
         yield return new WaitForSeconds(4.5f);
         dm.ShowButtons();
     }
 
     public IEnumerator SimpleEndScene(string msg) {
         dm.DisablePlayer();
-        dm.ShowBlackScreen("msg");
-        yield return new WaitForSeconds(4.5f);
+        dm.ShowBlackScreen(msg);
+        yield return new WaitForSeconds(3.5f);
         dm.ShowButtons();
     }
 
@@ -92,7 +92,7 @@ public class CutsceneHandler : MonoBehaviour
     // Update is called once per frame
     void Start()
     {
-        skip = RetryManager.hasRetried();
+        skip = skip? true : RetryManager.hasRetried();
 
         if (skip) {
             StartWithoutCutscene();

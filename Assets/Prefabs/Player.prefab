@@ -681,7 +681,7 @@ GameObject:
   - component: {fileID: 6491737373545659087}
   - component: {fileID: 2779358856177045744}
   - component: {fileID: 8004056205676379556}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -777,7 +777,7 @@ MonoBehaviour:
   interactableLayer:
     serializedVersion: 2
     m_Bits: 256
-  throwRange: 0
+  throwRange: 6
   groundCheck: {fileID: 975196279247542678}
   gcRange: 0.1
   groundLayer:

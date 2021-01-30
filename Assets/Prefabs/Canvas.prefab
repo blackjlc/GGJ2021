@@ -642,7 +642,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -58.700012, y: -186.96379}
+  m_AnchoredPosition: {x: -51.6, y: -186.96379}
   m_SizeDelta: {x: 59.34323, y: 24.910828}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4575349161475252357
@@ -853,7 +853,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -9, y: -34.146194}
+  m_AnchoredPosition: {x: -1.9000053, y: -34.146194}
   m_SizeDelta: {x: 93.32788, y: 33.136627}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4575349161907153404
@@ -1232,6 +1232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d39fbd73a080878488b25811eb08459a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ch: {fileID: 0}
   totalFriendNum: 3
   friendsName:
   - Peter
