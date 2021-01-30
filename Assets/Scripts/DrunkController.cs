@@ -45,6 +45,7 @@ public class DrunkController : MonoBehaviour
 
     public void UpdateDrunkLevel(int drunkLevel)
     {
+        if (this.drunkLevel >= 6) return;
         this.drunkLevel = drunkLevel;
         lensDistortion.intensity.value = -(float)drunkLevel / 10.0f;
     }

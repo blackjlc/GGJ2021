@@ -1653,6 +1653,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2779358856177045744, guid: eabc153588b906f40a0a5d971fc7694c, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6419455249738941674, guid: eabc153588b906f40a0a5d971fc7694c, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -1709,6 +1713,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8004056205676379556, guid: eabc153588b906f40a0a5d971fc7694c, type: 3}
+      propertyPath: GlassClinging
+      value: 
+      objectReference: {fileID: 8300000, guid: ac218377f0e34614eb1eb6653f9b41f5, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eabc153588b906f40a0a5d971fc7694c, type: 3}
 --- !u!1 &2107090450
@@ -1936,7 +1944,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 559072668001516960, guid: 585a0e439799b1c4d9c4c3086a367440, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 559072668001516989, guid: 585a0e439799b1c4d9c4c3086a367440, type: 3}
       propertyPath: m_RootOrder

@@ -105,9 +105,9 @@ public class AudioController : MonoBehaviour
 
     public void PlayGlassClinging()
     {
-        sound.clip = GlassClinging;
-        sound.loop = false;
-        sound.Play();
+        // sound.clip = GlassClinging;
+        // sound.loop = false;
+        sound.PlayOneShot(GlassClinging);
     }
 
     public void PlayAmbience()
