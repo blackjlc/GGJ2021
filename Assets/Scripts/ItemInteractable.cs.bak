@@ -11,12 +11,6 @@ public class ItemInteractable : MonoBehaviour, IInteractable, IPickupable
     Transform playerTransform;
     public bool following;
 
-    [Header("Materials")]
-    public Material darkMaterial;
-    public Material brightMaterial;
-    private bool highlight;
-    private SpriteRenderer sr;
-
     #region <<IInteractable>>
     public GameObject Interact(PlayerData playerData) {
         GetComponent<Collider>().enabled = false;
@@ -31,12 +25,6 @@ public class ItemInteractable : MonoBehaviour, IInteractable, IPickupable
     public void ToggleHighlight() {
         //TODO
         Debug.Log("Toggle Highlight for " + gameObject.name);
-        highlight = !highlight;
-        if (highlight) {
-            sr.material = brightMaterial;
-        } else {
-            sr.material = darkMaterial;
-        }
     }
     #endregion
 
@@ -61,8 +49,6 @@ public class ItemInteractable : MonoBehaviour, IInteractable, IPickupable
 
     void Awake() {
         playerTransform = GameObject.Find("Player").transform;
-        sr = GetComponent<SpriteRenderer>();
-        highlight = false;
     }
 
     void Update() {
