@@ -9,7 +9,7 @@ public class CutsceneHandler : MonoBehaviour
     private DialogueManager dm;
     private PlayerController playerController;
     private Animator animator;
-    public bool started = true;
+    public bool skip;
 
     public void SwitchCamera(CameraState state) {
         switch (state) {
@@ -49,6 +49,14 @@ public class CutsceneHandler : MonoBehaviour
         //Start timer
     }
 
+    void StartWithoutCutscene() {
+        SwitchCamera(CameraState.Player);
+        dm.isCinematic = false;
+        playerController.enableControl = true;
+        dm.blackBackGround.SetActive(false);
+        dm.HideBlackScreen();
+    }
+
     void Awake()
     {
         animator = GetComponent<Animator>();
@@ -59,6 +67,10 @@ public class CutsceneHandler : MonoBehaviour
     // Update is called once per frame
     void Start()
     {
-        StartCoroutine(StartScene());
+        if (skip) {
+            StartWithoutCutscene();
+        } else {
+            StartCoroutine(StartScene());
+        }
     }
 }

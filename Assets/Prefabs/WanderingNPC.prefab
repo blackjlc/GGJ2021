@@ -464,6 +464,7 @@ MonoBehaviour:
   npcName: NPC
   textBubblePrefab: {fileID: 823911981364977488, guid: cb486ccb55d8971488148078ffe889e3, type: 3}
   textBubbleOffset: {x: 0.3, y: 0.7, z: 0}
+  dialogue: 
   isFriend: 0
 --- !u!114 &-6837523503441558162
 MonoBehaviour:
@@ -808,7 +809,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 793431326251670165, guid: 11490438f2b191b40901c385dffe78da, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.79
       objectReference: {fileID: 0}
     - target: {fileID: 793431326251670165, guid: 11490438f2b191b40901c385dffe78da, type: 3}
       propertyPath: m_LocalPosition.z

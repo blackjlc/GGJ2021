@@ -7,6 +7,7 @@ public class NPCInteractable : MonoBehaviour, IInteractable
     public string npcName;
     public GameObject textBubblePrefab;
     public Vector3 textBubbleOffset;
+    public string dialogue;
     public bool isFriend;
 
     public bool CanInteract()
@@ -16,7 +17,7 @@ public class NPCInteractable : MonoBehaviour, IInteractable
 
     public GameObject Interact(PlayerData playerData)
     {
-        Debug.Log(gameObject.name + " says Hi.");
+        Debug.Log(gameObject.name + " says " + dialogue);
         Debug.Log("Carrying " + playerData.carryingFriend);
         if (!isFriend)
         {
@@ -25,7 +26,7 @@ public class NPCInteractable : MonoBehaviour, IInteractable
                 Destroy(transform.Find("TextBubble(Clone)").gameObject);
             }
             GameObject go = Instantiate(textBubblePrefab, transform.position + textBubbleOffset, Quaternion.identity, transform);
-            go.GetComponent<TextBubble>().Setup(gameObject.name + " says Hi.");
+            go.GetComponent<TextBubble>().Setup(dialogue);
             Destroy(go, 6f);
             return gameObject;
         }

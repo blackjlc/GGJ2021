@@ -9,6 +9,7 @@ public class SecurityNPC : MonoBehaviour, IInteractable, IHittable
     public string name;
     public GameObject textBubblePrefab;
     public Vector3 textBubbleOffset;
+    public string dialogue;
 
     //Security
     public LayerMask targetLayer;
@@ -36,9 +37,9 @@ public class SecurityNPC : MonoBehaviour, IInteractable, IHittable
             {
                 Destroy(transform.Find("TextBubble(Clone)").gameObject);
             }
-            Debug.Log(gameObject.name + " says I am a Security.");
+            Debug.Log(gameObject.name + " says " + dialogue);
             GameObject go = Instantiate(textBubblePrefab, transform.position + textBubbleOffset, Quaternion.identity, transform);
-            go.GetComponent<TextBubble>().Setup(gameObject.name + " says I am a Security.");
+            go.GetComponent<TextBubble>().Setup(dialogue);
             Destroy(go, 6f);
         }
         return gameObject;

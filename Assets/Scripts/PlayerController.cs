@@ -32,6 +32,12 @@ public class PlayerController : MonoBehaviour
     public float throwRange;
     private GameObject throwTarget;
 
+    [Header("Ground Check")]
+    public Transform groundCheck;
+    public float gcRange;
+    public LayerMask groundLayer;
+    public float gravity;
+
     [Header("Animation")]
     private AnimationController anim;
 
@@ -86,13 +92,21 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        //Ground Check
+        Collider[] groundColliders = Physics.OverlapSphere(groundCheck.position, gcRange, groundLayer);
+        float g = 0f;
+        if (groundColliders.Length == 0) {
+            Debug.Log("Not Grounded");
+            g = gravity;
+        }
+
         if (!interruptInput)
         {
             Vector2 inputVector = controlMap.ReadValue<Vector2>();
-            Vector3 finalVector = enableControl ? new Vector3(inputVector.x, 0, inputVector.y) : Vector3.zero;
+            Vector3 finalVector = enableControl ? new Vector3(inputVector.x, g, inputVector.y) : Vector3.zero;
             finalVector = drunk.GetDrunkQuaternion() * finalVector;
             anim.Move(finalVector.x, finalVector.sqrMagnitude > 0 ? 1 : 0);
-            // Debug.Log(finalVector.ToString());
+            //Debug.Log(finalVector.ToString());
             controller.Move(finalVector * Time.deltaTime * speed);
             if (finalVector.magnitude != 0f)
             {
@@ -107,6 +121,19 @@ public class PlayerController : MonoBehaviour
         {
             HighlightInteract();
         }
+    }
+
+    private Collider GetClosestCollider(Collider[] colliders) {
+        Collider result = colliders[0];
+        float currDistance = Mathf.Infinity;
+        foreach(Collider collider in colliders) {
+            float distance = Vector3.Distance(transform.position, collider.transform.position);
+            if(distance < currDistance) {
+                currDistance = distance;
+                result = collider;
+            }
+        }
+        return result;
     }
 
     private void HandleInteract(InputAction.CallbackContext context)
@@ -144,8 +171,9 @@ public class PlayerController : MonoBehaviour
         }
         else if (interactables.Length > 0)
         {
-            IInteractable targetInteractable = interactables[0].GetComponent<IInteractable>();
-            GameObject targetObject = interactables[0].gameObject;
+            Collider collider = GetClosestCollider(interactables);
+            IInteractable targetInteractable = collider.GetComponent<IInteractable>();
+            GameObject targetObject = collider.gameObject;
 
             if (targetInteractable != highlightedInteractable && targetInteractable != null && targetInteractable.CanInteract())
             {
@@ -251,7 +279,7 @@ public class PlayerController : MonoBehaviour
             {
                 print("dash");
                 interruptInput = true;
-                Vector3 finalVector = new Vector3(firstMove.x, 0, firstMove.y);
+                Vector3 finalVector = enableControl ? new Vector3(firstMove.x, 0, firstMove.y) : Vector3.zero;
                 float timer = dashDurationSec;
                 while (!token.IsCancellationRequested && timer > 0)
                 {
