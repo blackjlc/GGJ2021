@@ -777,7 +777,7 @@ MonoBehaviour:
   interactableLayer:
     serializedVersion: 2
     m_Bits: 256
-  throwRange: 6
+  throwRange: 0
   groundCheck: {fileID: 975196279247542678}
   gcRange: 0.1
   groundLayer:
