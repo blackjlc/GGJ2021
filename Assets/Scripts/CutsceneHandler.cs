@@ -19,6 +19,9 @@ public class CutsceneHandler : MonoBehaviour
             case CameraState.Player:
                 animator.Play("PlayerCamera");
                 break;
+            case CameraState.End:
+                animator.Play("EndSceneCamera");
+                break;
             default:
                 animator.Play("PlayerCamera");
                 break;
@@ -49,6 +52,28 @@ public class CutsceneHandler : MonoBehaviour
         //Start timer
     }
 
+    public IEnumerator EndScene(string msg) {
+        dm.ShowBlackScreen("");
+        dm.isCinematic = true;
+        dm.DisablePlayer();
+        yield return new WaitForSeconds(2f);
+        GameObject.Find("Player").SetActive(false);
+        SwitchCamera(CameraState.End);
+        dm.HideBlackScreen();
+        GameObject.Find("Taxi").GetComponent<ExitInteractable>().drive = true;
+        yield return new WaitForSeconds(2f);
+        dm.ShowBlackScreen("msg");
+        yield return new WaitForSeconds(4.5f);
+        dm.ShowButtons();
+    }
+
+    public IEnumerator SimpleEndScene(string msg) {
+        dm.DisablePlayer();
+        dm.ShowBlackScreen("msg");
+        yield return new WaitForSeconds(4.5f);
+        dm.ShowButtons();
+    }
+
     void StartWithoutCutscene() {
         SwitchCamera(CameraState.Player);
         dm.isCinematic = false;
@@ -67,6 +92,8 @@ public class CutsceneHandler : MonoBehaviour
     // Update is called once per frame
     void Start()
     {
+        skip = RetryManager.hasRetried();
+
         if (skip) {
             StartWithoutCutscene();
         } else {

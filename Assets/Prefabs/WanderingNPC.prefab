@@ -464,7 +464,7 @@ MonoBehaviour:
   npcName: NPC
   textBubblePrefab: {fileID: 823911981364977488, guid: cb486ccb55d8971488148078ffe889e3, type: 3}
   textBubbleOffset: {x: 0.3, y: 0.7, z: 0}
-  dialogue: 
+  dialogue: Hi, how are you?
   isFriend: 0
 --- !u!114 &-6837523503441558162
 MonoBehaviour:

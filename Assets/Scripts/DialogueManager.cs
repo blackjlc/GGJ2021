@@ -8,6 +8,7 @@ public class DialogueManager : MonoBehaviour{
     public CanvasGroup blackScreen;
     public CanvasGroup cinematic;
     public GameObject blackBackGround;
+    public GameObject resetButton;
     public Text blackScreenText;
     public Text friendText;
     public bool isBlackout;
@@ -52,23 +53,10 @@ public class DialogueManager : MonoBehaviour{
         friendText.gameObject.SetActive(true);
     }
 
-    public void StartDialogue(){
-		//disable player control
-		//animate screen
-	}
-	
-	public void EndDialogue(){
-		//enable player control
-		//animate screen
-	}
-	
-	public void NextEvent(){
-		
-	}
-	
-	public void ShowTransitionScreen(float duration, string text){
-		
-	}
+    public void ShowButtons(){
+        resetButton.gameObject.SetActive(true);
+
+    }
 	
 	void Awake(){
         //player = GameObject.Find("Player");
@@ -76,6 +64,7 @@ public class DialogueManager : MonoBehaviour{
     }
 
     private void Start() {
+        resetButton.SetActive(false);
         blackScreen.alpha = 0;
         cinematic.alpha = 0;
     }

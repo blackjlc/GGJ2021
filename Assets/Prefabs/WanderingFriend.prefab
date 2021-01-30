@@ -237,6 +237,25 @@ Transform:
   m_Father: {fileID: 8553538307047852037}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -19.405}
+--- !u!95 &2846489024427179514
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3593729469836256590}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d4cf13b834a8aed429348fddc6bc5ccc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3768749498113848559
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,6 +338,7 @@ MonoBehaviour:
   npcName: Peter
   textBubblePrefab: {fileID: 823911981364977488, guid: cb486ccb55d8971488148078ffe889e3, type: 3}
   textBubbleOffset: {x: 0.3, y: 0.7, z: 0}
+  dialogue: Hi, how are you?
   isFriend: 1
 --- !u!114 &8889822555628556435
 MonoBehaviour:
@@ -559,25 +579,6 @@ Transform:
   m_Father: {fileID: 8071483476237866368}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -77.341}
---- !u!95 &2846489024427179514
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3593729469836256590}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d4cf13b834a8aed429348fddc6bc5ccc, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7390167571332893525
 GameObject:
   m_ObjectHideFlags: 0

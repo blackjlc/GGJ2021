@@ -22,6 +22,17 @@ public class SecurityNPC : MonoBehaviour, IInteractable, IHittable
     public bool dead;
 
     private AnimationController anim;
+    private GameManager gm;
+
+    private void Awake()
+    {
+        anim = GetComponent<AnimationController>();
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+
+    private void Start() {
+        gm.AddSecurity(this);
+    }
 
     private void Start()
     {
@@ -61,7 +72,7 @@ public class SecurityNPC : MonoBehaviour, IInteractable, IHittable
     void HandleLook()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, lookRange, targetLayer);
-        Debug.Log("Security sees " + colliders.Length + " targets");
+        //Debug.Log("Security sees " + colliders.Length + " targets");
         if (colliders.Length > 0)
         {
             targetTransform = colliders[0].transform;
@@ -70,7 +81,7 @@ public class SecurityNPC : MonoBehaviour, IInteractable, IHittable
 
     void HandleMove()
     {
-        Vector3 dir = targetTransform.position - transform.position;
+        Vector3 dir = targetTransform.position - transform.position + new Vector3(Random.Range(-1,1),0, Random.Range(-1, 1));
         transform.position = Vector3.MoveTowards(transform.position, targetTransform.position, moveSpeed * Time.deltaTime);
         anim.Move(dir.x, 1);
     }
@@ -79,12 +90,21 @@ public class SecurityNPC : MonoBehaviour, IInteractable, IHittable
     {
         dead = true;
         anim.KnockedOut();
-
+        gm.TriggerAllSecurity();
     }
 
     public bool IsDead()
     {
         return dead;
+    }
+    #endregion
+
+    #region <<Melee>>
+    public void Attack() {
+        Debug.Log(gameObject.name + " Attacked");
+        if (Vector3.Distance(transform.position, targetTransform.position) < meleeRange * 2) {
+            targetTransform.gameObject.GetComponent<IHittable>()?.Hit();
+        }
     }
     #endregion
 
@@ -99,7 +119,6 @@ public class SecurityNPC : MonoBehaviour, IInteractable, IHittable
             else if (Vector3.Distance(transform.position, targetTransform.position) < meleeRange)
             {
                 anim.Attack();
-                targetTransform.gameObject.GetComponent<IHittable>()?.Hit();
             }
             else
             {
