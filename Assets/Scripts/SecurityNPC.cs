@@ -100,7 +100,9 @@ public class SecurityNPC : MonoBehaviour, IInteractable, IHittable
     public void Attack() {
         Debug.Log(gameObject.name + " Attacked");
         if (Vector3.Distance(transform.position, targetTransform.position) < meleeRange * 2) {
-            targetTransform.gameObject.GetComponent<IHittable>()?.Hit();
+            if (!targetTransform.gameObject.GetComponent<IHittable>().IsDead()) {
+                targetTransform.gameObject.GetComponent<IHittable>().Hit();
+            }
         }
     }
     #endregion

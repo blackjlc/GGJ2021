@@ -10,8 +10,7 @@ using UnityEngine.Events;
 using Cysharp.Threading.Tasks.Linq;
 using Random = UnityEngine.Random;
 
-public class PlayerController : MonoBehaviour
-{
+public class PlayerController : MonoBehaviour, IHittable {
     private MyPlayerInput inputs;
     public InputAction controlMap;
     public float speed;
@@ -63,7 +62,9 @@ public class PlayerController : MonoBehaviour
     private new Transform transform;
     private MoveEvent onMove;
     private CancellationTokenSource tokenSource;
-
+    private GameManager gm;
+    private bool dead;
+    
     void OnEnable()
     {
         inputs = new MyPlayerInput();
@@ -96,6 +97,7 @@ public class PlayerController : MonoBehaviour
         sound = GetComponent<AudioController>();
         effectTimer = effectTime;
         playerData = new PlayerData(anim);
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     private void Update()
@@ -339,6 +341,15 @@ public class PlayerController : MonoBehaviour
     private void OnDestroy()
     {
         tokenSource.Dispose();
+    }
+
+    public void Hit() {
+        dead = true;
+        gm.GameOver("You got knocked out.", false);
+    }
+
+    public bool IsDead() {
+        return dead;
     }
 }
 

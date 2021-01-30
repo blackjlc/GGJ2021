@@ -6,7 +6,7 @@ public class RetryManager : MonoBehaviour
 {
     private static RetryManager instance;
 
-    private static bool retried;
+    public static bool retried;
 
     public static void Retry() {
         retried = true;

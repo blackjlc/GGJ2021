@@ -27,6 +27,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ResetAllSecurity() {
+        foreach (SecurityNPC security in allSecurity) {
+            security.angry = false;
+        }
+    }
+
     public void SaveFriend(string friend) {
         friendsName.Remove(friend);
         savedFriendNum++;
@@ -38,6 +44,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver(string msg, bool showScene) {
         Debug.Log(msg);
+        ResetAllSecurity();
         if (showScene) {
             StartCoroutine(ch.EndScene(msg));
         } else {
@@ -47,8 +54,9 @@ public class GameManager : MonoBehaviour
 
     public void Win() {
         Debug.Log("You found all your friends.\n Congrats!");
-        dm.friendText.gameObject.SetActive(false);
-        dm.ShowBlackScreen("You found all your friends.\n Congrats!");
+        //dm.friendText.gameObject.SetActive(false);
+        //dm.ShowBlackScreen("You found all your friends.\n Congrats!");
+        GameOver("You found all your friends.\n Congrats!", true);
     }
 
     public void Reset() {
