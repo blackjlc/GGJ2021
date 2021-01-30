@@ -197,6 +197,12 @@ public class PlayerController : MonoBehaviour, IHittable
             highlightedInteractable.ToggleHighlight();
             highlightedInteractable = null;
         }
+        else if (playerData.item != null && playerData.item.IsDrinkable())
+        {
+            playerData.item.Drink();
+            sound.PlayGlassClinging();
+            drunk.Drink();
+        }
         else
         {
             go = highlightedInteractable?.Interact(playerData);

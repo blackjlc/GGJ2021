@@ -23,10 +23,11 @@ public class AudioController : MonoBehaviour
 
     private AudioSource sound;
 
-    private void Start()
+    private void Awake()
     {
         sound = GetComponent<AudioSource>();
     }
+
     public void PlaySteppingSlime()
     {
         // sound.clip = SteppingOntheSlime;

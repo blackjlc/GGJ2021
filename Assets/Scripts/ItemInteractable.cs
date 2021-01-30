@@ -18,17 +18,20 @@ public class ItemInteractable : MonoBehaviour, IInteractable, IPickupable
     private SpriteRenderer sr;
 
     #region <<IInteractable>>
-    public GameObject Interact(PlayerData playerData) {
+    public GameObject Interact(PlayerData playerData)
+    {
         GetComponent<Collider>().enabled = false;
         following = true;
         return gameObject;
     }
 
-    public bool CanInteract() {
+    public bool CanInteract()
+    {
         return !following;
     }
 
-    public void ToggleHighlight() {
+    public void ToggleHighlight()
+    {
         //TODO
         Debug.Log("Toggle Highlight for " + gameObject.name);
         highlight = !highlight;
@@ -41,37 +44,54 @@ public class ItemInteractable : MonoBehaviour, IInteractable, IPickupable
     #endregion
 
     #region <<IPickupable>>
-    public string GetName() {
+    public string GetName()
+    {
         return name;
     }
 
-    public void Use(GameObject target) {
+    public void Use(GameObject target)
+    {
         Destroy(gameObject);
     }
 
-    public void Drop() {
+    public void Drop()
+    {
         GetComponent<Collider>().enabled = true;
         following = false;
     }
 
-    public bool IsThrowable() {
+    public bool IsThrowable()
+    {
         return false;
     }
     #endregion
 
-    void Awake() {
+    void Awake()
+    {
         playerTransform = GameObject.Find("Player").transform;
         sr = GetComponent<SpriteRenderer>();
         highlight = false;
     }
 
-    void Update() {
-        if (following) {
+    void Update()
+    {
+        if (following)
+        {
             Vector3 vectorToPlayer = playerTransform.position - transform.position;
             float distanceFromPlayer = Mathf.Abs(vectorToPlayer.magnitude);
-            if (distanceFromPlayer > stopFollowingRange) {
+            if (distanceFromPlayer > stopFollowingRange)
+            {
                 transform.Translate(vectorToPlayer.normalized * moveSpeed * Time.deltaTime);
             }
         }
+    }
+
+    public bool IsDrinkable()
+    {
+        return false;
+    }
+
+    public void Drink()
+    {
     }
 }

@@ -9,6 +9,7 @@ public class ThrowItem : MonoBehaviour, IInteractable, IPickupable
     public string name;
     public float moveSpeed;
     public float stopFollowingRange;
+    public bool drinkable = false;
 
     Transform playerTransform;
     public bool following;
@@ -70,6 +71,16 @@ public class ThrowItem : MonoBehaviour, IInteractable, IPickupable
     public bool IsThrowable()
     {
         return true;
+    }
+
+    public bool IsDrinkable()
+    {
+        return drinkable;
+    }
+
+    public void Drink()
+    {
+        drinkable = false;
     }
     #endregion
 
