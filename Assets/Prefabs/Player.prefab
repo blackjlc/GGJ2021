@@ -1112,7 +1112,7 @@ MonoBehaviour:
   OpenLock: {fileID: 0}
   TapWater: {fileID: 0}
   ToiletFlush: {fileID: 0}
-  GlassClinging: {fileID: 0}
+  GlassClinging: {fileID: 8300000, guid: ac218377f0e34614eb1eb6653f9b41f5, type: 3}
   Ambience: {fileID: 0}
   music1: {fileID: 0}
   music2: {fileID: 0}

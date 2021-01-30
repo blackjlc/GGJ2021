@@ -100,6 +100,7 @@ MonoBehaviour:
   moveSpeed: 5
   stopFollowingRange: 1
   following: 0
+  drinkable: 1
   throwSpeed: 5
   hitRange: 0.5
   hitLayer:

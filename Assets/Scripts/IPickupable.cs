@@ -4,6 +4,9 @@ using UnityEngine;
 
 public interface IPickupable
 {
+    bool IsDrinkable();
+    void Drink();
+
     string GetName();
 
     bool IsThrowable();
