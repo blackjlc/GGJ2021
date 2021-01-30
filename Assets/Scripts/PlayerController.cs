@@ -32,6 +32,12 @@ public class PlayerController : MonoBehaviour
     public float throwRange;
     private GameObject throwTarget;
 
+    [Header("Ground Check")]
+    public Transform groundCheck;
+    public float gcRange;
+    public LayerMask groundLayer;
+    public float gravity;
+
     [Header("Animation")]
     private AnimationController anim;
 
@@ -45,8 +51,15 @@ public class PlayerController : MonoBehaviour
     public GameObject textBubblePrefab;
     public Vector3 textBubbleOffset;
 
+    [Header("Puke")]
+    public LayerMask pukeLayer;
+    private bool onPuke = false;
+    private float pukeRoughness = .1f;  // 0:no friction, 1:full friction
+    private Vector3 SlipVector;
+
     private DrunkController drunk;
     private CharacterController controller;
+    private AudioController sound;
     private new Transform transform;
     private MoveEvent onMove;
     private CancellationTokenSource tokenSource;
@@ -80,20 +93,41 @@ public class PlayerController : MonoBehaviour
         transform = GetComponent<Transform>();
         anim = GetComponent<AnimationController>();
         drunk = GetComponent<DrunkController>();
+        sound = GetComponent<AudioController>();
         effectTimer = effectTime;
         playerData = new PlayerData(anim);
     }
 
     private void Update()
     {
+        //Ground Check
+        Collider[] groundColliders = Physics.OverlapSphere(groundCheck.position, gcRange, groundLayer);
+        float g = 0f;
+        if (groundColliders.Length == 0)
+        {
+            //Debug.Log("Not Grounded");
+            g = gravity;
+        }
+
         if (!interruptInput)
         {
             Vector2 inputVector = controlMap.ReadValue<Vector2>();
-            Vector3 finalVector = enableControl ? new Vector3(inputVector.x, 0, inputVector.y) : Vector3.zero;
+            Vector3 finalVector = enableControl ? new Vector3(inputVector.x, g, inputVector.y) : Vector3.zero;
             finalVector = drunk.GetDrunkQuaternion() * finalVector;
+
+            PukeCheck(finalVector);
+
             anim.Move(finalVector.x, finalVector.sqrMagnitude > 0 ? 1 : 0);
-            // Debug.Log(finalVector.ToString());
-            controller.Move(finalVector * Time.deltaTime * speed);
+            //Debug.Log(finalVector.ToString());
+            if (!onPuke)
+            {
+                controller.Move(finalVector * speed * Time.deltaTime);
+            }
+            else
+            {
+                controller.Move((finalVector * pukeRoughness + SlipVector) * Time.deltaTime);
+            }
+
             if (finalVector.magnitude != 0f)
             {
                 HandleWalkEffect();
@@ -107,6 +141,42 @@ public class PlayerController : MonoBehaviour
         {
             HighlightInteract();
         }
+    }
+
+    private void PukeCheck(Vector3 finalVector)
+    {
+        Collider[] pukeColliders = Physics.OverlapSphere(groundCheck.position, gcRange, pukeLayer, QueryTriggerInteraction.Collide);
+        if (!onPuke && pukeColliders.Length > 0)
+        {
+            print("On puke");
+            onPuke = true;
+            SlipVector = finalVector * speed;
+            sound.PlaySteppingSlime();
+        }
+        else if (onPuke && pukeColliders.Length == 0)
+        {
+            print("Not on puke");
+            onPuke = false;
+            pukeRoughness = 1;
+            SlipVector = Vector3.zero;
+            sound.Stop();
+        }
+    }
+
+    private Collider GetClosestCollider(Collider[] colliders)
+    {
+        Collider result = colliders[0];
+        float currDistance = Mathf.Infinity;
+        foreach (Collider collider in colliders)
+        {
+            float distance = Vector3.Distance(transform.position, collider.transform.position);
+            if (distance < currDistance)
+            {
+                currDistance = distance;
+                result = collider;
+            }
+        }
+        return result;
     }
 
     private void HandleInteract(InputAction.CallbackContext context)
@@ -144,8 +214,9 @@ public class PlayerController : MonoBehaviour
         }
         else if (interactables.Length > 0)
         {
-            IInteractable targetInteractable = interactables[0].GetComponent<IInteractable>();
-            GameObject targetObject = interactables[0].gameObject;
+            Collider collider = GetClosestCollider(interactables);
+            IInteractable targetInteractable = collider.GetComponent<IInteractable>();
+            GameObject targetObject = collider.gameObject;
 
             if (targetInteractable != highlightedInteractable && targetInteractable != null && targetInteractable.CanInteract())
             {
@@ -251,7 +322,7 @@ public class PlayerController : MonoBehaviour
             {
                 print("dash");
                 interruptInput = true;
-                Vector3 finalVector = new Vector3(firstMove.x, 0, firstMove.y);
+                Vector3 finalVector = enableControl ? new Vector3(firstMove.x, 0, firstMove.y) : Vector3.zero;
                 float timer = dashDurationSec;
                 while (!token.IsCancellationRequested && timer > 0)
                 {
@@ -260,11 +331,6 @@ public class PlayerController : MonoBehaviour
                     timer -= Time.deltaTime;
                     await UniTask.NextFrame(cancellationToken: token);
                 }
-                // await UniTaskAsyncEnumerable.EveryUpdate().Take(60).ForEachAsync(_ =>
-                // {
-                //     anim.Move(finalVector.x, 2);
-                //     controller.Move(finalVector * Time.deltaTime * dashSpeed);
-                // });
                 interruptInput = false;
             }
         }

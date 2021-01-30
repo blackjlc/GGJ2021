@@ -9,7 +9,7 @@ public class CutsceneHandler : MonoBehaviour
     private DialogueManager dm;
     private PlayerController playerController;
     private Animator animator;
-    public bool started = true;
+    public bool skip;
 
     public void SwitchCamera(CameraState state) {
         switch (state) {
@@ -18,6 +18,9 @@ public class CutsceneHandler : MonoBehaviour
                 break;
             case CameraState.Player:
                 animator.Play("PlayerCamera");
+                break;
+            case CameraState.End:
+                animator.Play("EndSceneCamera");
                 break;
             default:
                 animator.Play("PlayerCamera");
@@ -49,6 +52,36 @@ public class CutsceneHandler : MonoBehaviour
         //Start timer
     }
 
+    public IEnumerator EndScene(string msg) {
+        dm.ShowBlackScreen("");
+        dm.isCinematic = true;
+        dm.DisablePlayer();
+        yield return new WaitForSeconds(2f);
+        GameObject.Find("Player").SetActive(false);
+        SwitchCamera(CameraState.End);
+        dm.HideBlackScreen();
+        GameObject.Find("Taxi").GetComponent<ExitInteractable>().drive = true;
+        yield return new WaitForSeconds(2f);
+        dm.ShowBlackScreen("msg");
+        yield return new WaitForSeconds(4.5f);
+        dm.ShowButtons();
+    }
+
+    public IEnumerator SimpleEndScene(string msg) {
+        dm.DisablePlayer();
+        dm.ShowBlackScreen("msg");
+        yield return new WaitForSeconds(4.5f);
+        dm.ShowButtons();
+    }
+
+    void StartWithoutCutscene() {
+        SwitchCamera(CameraState.Player);
+        dm.isCinematic = false;
+        playerController.enableControl = true;
+        dm.blackBackGround.SetActive(false);
+        dm.HideBlackScreen();
+    }
+
     void Awake()
     {
         animator = GetComponent<Animator>();
@@ -59,6 +92,12 @@ public class CutsceneHandler : MonoBehaviour
     // Update is called once per frame
     void Start()
     {
-        StartCoroutine(StartScene());
+        skip = RetryManager.hasRetried();
+
+        if (skip) {
+            StartWithoutCutscene();
+        } else {
+            StartCoroutine(StartScene());
+        }
     }
 }

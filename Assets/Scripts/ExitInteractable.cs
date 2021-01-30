@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ExitInteractable : MonoBehaviour, IInteractable
 {
-
+    public float driveSpeed;
+    public bool drive;
     GameManager gm;
 
     public bool CanInteract()
@@ -32,5 +33,11 @@ public class ExitInteractable : MonoBehaviour, IInteractable
     void Awake()
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+
+    void Update() {
+        if (drive && transform.position.x <100f) {
+            transform.Translate(new Vector3(driveSpeed, 0, 0) * Time.deltaTime);
+        }
     }
 }
