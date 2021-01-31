@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ded2fee3528cac4a9f30044d0e4df49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Key
-  moveSpeed: 4
-  stopFollowingRange: 1
+  name: "\u01FD"
+  moveSpeed: 0
+  stopFollowingRange: 0
   following: 0
   darkMaterial: {fileID: 2100000, guid: 9624b6fddb9ae5048bbf4d8dbef887b5, type: 2}
   brightMaterial: {fileID: 2100000, guid: 81b09f9fc4a7c9542a43b7a8b690e9b5, type: 2}
