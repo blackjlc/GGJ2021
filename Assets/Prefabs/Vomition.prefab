@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 559072668001516989}
   - component: {fileID: 559072668001516963}
+  - component: {fileID: 7689180917042163826}
   m_Layer: 12
   m_Name: Vomition
   m_TagString: Untagged
@@ -45,6 +46,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0857089, y: 0.5210489, z: 0.3943694}
   m_Center: {x: 0.0134595595, y: 0, z: -0.03}
+--- !u!210 &7689180917042163826
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559072668001516960}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &2929792566266710723
 GameObject:
   m_ObjectHideFlags: 0
