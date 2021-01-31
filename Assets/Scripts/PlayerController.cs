@@ -191,6 +191,7 @@ public class PlayerController : MonoBehaviour, IHittable
         GameObject go = null;
         if (playerData.item != null && playerData.item.IsThrowable() && throwTarget != null)
         {
+            Debug.Log("1");
             playerData.item.Use(throwTarget);
             playerData.item = null;
             throwTarget = null;
@@ -199,18 +200,24 @@ public class PlayerController : MonoBehaviour, IHittable
         }
         else if (playerData.item != null && playerData.item.IsDrinkable())
         {
+            Debug.Log("2");
             playerData.item.Drink();
             sound.PlayGlassClinging();
             drunk.Drink();
+            playerData.item.Drop(); 
+            playerData.item = null;
         }
         else
         {
+            Debug.Log("3");
             go = highlightedInteractable?.Interact(playerData);
         }
         if (go != null && go.GetComponent<IPickupable>() != null)
         {
+            Debug.Log("4");
             if (playerData.item != null)
             {
+                Debug.Log("5");
                 playerData.item.Drop();
             }
             playerData.item = go.GetComponent<IPickupable>();
@@ -266,6 +273,9 @@ public class PlayerController : MonoBehaviour, IHittable
                     targetInteractable = collider.GetComponent<IInteractable>();
                     targetObject = collider.gameObject;
                 }
+            }
+            if(targetObject == null) {
+                throwTarget = null;
             }
             if (targetInteractable != highlightedInteractable && targetInteractable != null && targetInteractable.CanInteract())
             {

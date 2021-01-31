@@ -64,6 +64,7 @@ public class ThrowItem : MonoBehaviour, IInteractable, IPickupable
 
     public void Drop()
     {
+        Debug.Log("Drop " + gameObject.name);
         GetComponent<Collider>().enabled = true;
         following = false;
     }

@@ -24,6 +24,7 @@ public class DoorInteractable : MonoBehaviour, IInteractable
 
     public GameObject Interact(PlayerData playerData)
     {
+        Debug.Log(gameObject.name + " is interacted");
         if ((locked && playerData.item != null && playerData.item.GetName() == keyName))
         {//Locked Door
             IPickupable tmpItem = playerData.item;
