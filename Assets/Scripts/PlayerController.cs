@@ -332,12 +332,12 @@ public class PlayerController : MonoBehaviour, IHittable
                 continue;
             }
 
-            if (firstMove == secondMove)
+            if (firstMove == secondMove && enableControl)
             {
                 print("dash");
                 sound.PlayDash();
                 interruptInput = true;
-                Vector3 finalVector = enableControl ? new Vector3(firstMove.x, 0, firstMove.y) : Vector3.zero;
+                Vector3 finalVector = new Vector3(firstMove.x, 0, firstMove.y);
                 float timer = dashDurationSec;
                 while (!token.IsCancellationRequested && timer > 0)
                 {
