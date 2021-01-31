@@ -425,6 +425,7 @@ GameObject:
   - component: {fileID: -6837523503441558162}
   - component: {fileID: 5500981339155648695}
   - component: {fileID: 2275402908178111075}
+  - component: {fileID: 6289958675112248135}
   m_Layer: 8
   m_Name: WanderingNPC
   m_TagString: Untagged
@@ -466,6 +467,9 @@ MonoBehaviour:
   textBubbleOffset: {x: 0.3, y: 0.7, z: 0}
   dialogue: Hi, how are you?
   isFriend: 0
+  darkMaterial: {fileID: 0}
+  brightMaterial: {fileID: 0}
+  renderer: []
 --- !u!114 &-6837523503441558162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -509,6 +513,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 9061806180288047111}
+--- !u!210 &6289958675112248135
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7923483685624720597}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &7923483686953833419
 GameObject:
   m_ObjectHideFlags: 0
