@@ -44,8 +44,7 @@ public class ThrowItem : MonoBehaviour, IInteractable, IPickupable
 
     public void ToggleHighlight()
     {
-        //TODO
-        Debug.Log("Toggle Highlight for " + gameObject.name);
+        
     }
     #endregion
 
@@ -67,6 +66,7 @@ public class ThrowItem : MonoBehaviour, IInteractable, IPickupable
         Debug.Log("Drop " + gameObject.name);
         GetComponent<Collider>().enabled = true;
         following = false;
+        Destroy(gameObject);
     }
 
     public bool IsThrowable()
